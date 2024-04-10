@@ -1,0 +1,7 @@
+.next
+.vscode
+.zed
+.DS_Store
+node_modules/
+
+.build

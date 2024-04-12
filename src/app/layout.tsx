@@ -1,6 +1,9 @@
 import { fontVariables } from "@/extensions/fonts";
 import { Metadata, Viewport } from "next";
 
+import "@/styles/global.css";
+import { YMaps } from "@pbe/react-yandex-maps";
+
 
 export const viewport: Viewport = {
     themeColor: 'black',

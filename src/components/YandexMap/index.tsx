@@ -14,6 +14,9 @@ import {
 } from "ymap3-components";
 import { YMapDefaultModules } from "ymap3-components/dist/src/types";
 
+const API_KEY = process.env.NEXT_PUBLIC_YANDEX_MAP_KEY 
+                ? process.env.NEXT_PUBLIC_YANDEX_MAP_KEY 
+                : "";
 
 function Map() {
   const [userPosition, setUserPosition] = useState<LngLat>([60.658035, 56.842906]);
@@ -32,7 +35,7 @@ function Map() {
   }
   return (
     <YMapComponentsProvider 
-        apiKey={"cd30143c-48d9-4f87-8c2b-1a74eada9222"} 
+        apiKey={API_KEY} 
         onLoad={onLoadHandler}   
     >
     <YMap 

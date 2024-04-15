@@ -1,0 +1,15 @@
+.Stars {
+    position: relative;
+    display: block;
+
+    width: 94px;
+    height: 14px;
+}
+
+.Stars img {
+    object-fit: none;
+    object-position: left;
+    position: absolute;
+    top: 0;
+    left: 0;
+}

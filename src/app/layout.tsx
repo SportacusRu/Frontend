@@ -2,7 +2,7 @@ import { fontVariables } from "@/extensions/fonts";
 import { Metadata, Viewport } from "next";
 
 import "@/styles/global.css";
-import { YMaps } from "@pbe/react-yandex-maps";
+import "@/styles/typography.css";
 
 
 export const viewport: Viewport = {

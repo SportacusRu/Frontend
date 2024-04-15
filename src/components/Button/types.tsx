@@ -1,17 +1,18 @@
-import React from "react"
+import React, { ReactNode } from "react"
 
 export enum ButtonType {
     MainColor, 
     Primary,
     PrimaryDark,
-    Dangerous,
-    DangerousDark,
+    Danger,
+    DangerDark,
     Outline,
     Circle
 }
 
 export type ButtonProps = {
     type: ButtonType
-    children: React.ReactNode
+    icon?: ReactNode
+    children?: ReactNode
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
 }

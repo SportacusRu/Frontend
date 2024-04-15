@@ -1,0 +1,50 @@
+.button {
+    width: 100%;
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+
+    border-radius: var(--border-radius-s);
+}
+
+.main {
+    background: var(--color-accent);
+    color: var(--color-grey-ultra-dark);
+}
+
+.primary {
+    background: var(--color-grey-ultra-dark);
+    color: var(--color-accent);
+}
+
+.primaryDark {
+    background: var(--color-body-light);
+    color: var(--color-accent);
+}
+
+.danger {
+    background: var(--color-grey-ultra-dark);
+    color: var(--color-danger);
+}
+
+.dangerDark {
+    background: var(--color-body-light);
+    color: var(--color-danger);
+}
+
+.outline {
+    border: var(--color-grey) 2px solid;
+    color: var(--color-grey);
+}
+
+.circle {
+    width: min-content;
+    color: var(--white);
+    background: var(--color-blur);
+    backdrop-filter: var(--backdrop-filter-2);
+
+    border-radius: 50%;
+    padding: 8px;
+}

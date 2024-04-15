@@ -1,18 +1,13 @@
-import YandexMap from "@/components/YandexMap";
 import { HomeProps } from "./types";
+import { Client } from "@/client";
 
 
-export default function Home({ searchParams }: HomeProps) {
-    if (searchParams.place_id) {
-        const place_id = searchParams.place_id
-        if (place_id)     
-        {
-            //
-        }
-    }
+export default async function Home({ searchParams }: HomeProps) {
+    const places = await Client.places.get();
+    const currentPlace = places.findLast(place => place.place_id == searchParams?.place_id);
     return (
         <main>
-            <YandexMap />
+
         </main>
     )
 }

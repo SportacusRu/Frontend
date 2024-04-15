@@ -1,4 +1,27 @@
 :root {
+    --color-accent: #C9FC6E;
+    --color-danger: #FF0031;
+    --color-white: #FFFFFF;
+    --color-grey-light: #CCCCCC;
+    --color-grey: #999999;
+    --color-grey-dark: #666666;
+    --color-grey-ultra-dark: #333333;
+    --color-body-light: #161616;
+    --color-body: #000000;
+
+    --color-blur: rgba(16, 16, 16, 10%);
+    --color-blackout: rgba(0, 0, 0, 60%);
+
+    --backdrop-filter-1: blur(18px);
+    --backdrop-filter-2: blur(30px);
+
+    --border-radius-xs: 12px;
+    --border-radius-s: 16px;
+    --border-radius-m: 24px;
+    --border-radius-l: 28px;
+    --border-radius-xl: 32px;
+    --border-radius-xxl: 36px;
+
     --transition: all .3s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
@@ -29,6 +52,8 @@ body {
 
     margin: 0;
     padding: 0;
+    
+    background: var(--color-body);
 }
 
 main {

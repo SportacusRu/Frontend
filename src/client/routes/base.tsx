@@ -1,6 +1,5 @@
 import { AxiosInstance } from "axios";
 import { ErrorType } from "../models/types";
-import qs from 'querystring'
 
 
 export default class baseRouter {
@@ -13,7 +12,9 @@ export default class baseRouter {
 
     protected async post(url: string, data: object) : Promise<ErrorType> {
         try {
-            await this.__client.post(`${this.__BASE_URL}/${url}`, { ...data });
+            await this.__client.post(`${this.__BASE_URL}/${url}`, null, {
+                params: data
+            });
             return { error: false };
         } catch (error) {
             return { error: true };

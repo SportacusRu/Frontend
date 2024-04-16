@@ -54,6 +54,7 @@ body {
     padding: 0;
     
     background: var(--color-body);
+    color: var(--color-white);
 }
 
 main {
@@ -66,12 +67,10 @@ h1, h2, h3, h4, h5, h6, p {
     padding: 0; 
 }
 
-input, button {
+input, button, textarea {
+    box-sizing: border-box;
     border: none;
     outline: none;
-
-    font-weight: 400;
-    font-size: 18px;
 
     font-family: inherit;
 }

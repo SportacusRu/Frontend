@@ -1,0 +1,11 @@
+.counter {
+    padding: 4px 8px;
+    margin: 0 auto;
+    width: fit-content;
+
+    color: var(--color-white);
+    background: var(--color-blur);
+
+    backdrop-filter: var(--backdrop-filter-1);
+    border-radius: var(--border-radius-xs);
+}

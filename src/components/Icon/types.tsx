@@ -17,7 +17,12 @@ export enum Icons {
     trash,
 }
 
+export enum IconSize {
+    S, M, L
+}
+
 export type IconProps = {
     type: Icons
     color: Colors
+    size?: IconSize
 }

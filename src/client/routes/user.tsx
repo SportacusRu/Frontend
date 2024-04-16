@@ -36,11 +36,11 @@ class UserRouter extends baseRouter {
     }
 
     async setNewPassword(
-        verify_link: string, password: string
+        verify_key: string, password: string
     ) : Promise<ErrorType> {
         return await this.post(
             "setNewPassword", {
-                verify_link: verify_link,
+                verify_key: verify_key,
                 password: password
             }
         )

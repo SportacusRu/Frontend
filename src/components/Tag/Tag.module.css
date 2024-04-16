@@ -1,0 +1,12 @@
+.Tag {
+    display: inline-block;
+    padding: 8px 16px;
+
+    border-radius: var(--border-radius-xs);
+    background: var(--color-body-light);
+    color: var(--color-grey-light);
+}
+.active {
+    background: var(--color-accent);
+    color: var(--color-grey-ultra-light)
+}

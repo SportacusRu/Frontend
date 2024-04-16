@@ -1,8 +1,11 @@
+
 import { fontVariables } from "@/extensions/fonts";
 import { Metadata, Viewport } from "next";
 
 import "@/styles/global.css";
 import "@/styles/typography.css";
+import "@/styles/input.scss";
+import ToastQueueProvider from "@/shared/ToastQueueProvider";
 
 
 export const viewport: Viewport = {
@@ -40,8 +43,10 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <html lang="en" className={fontVariables}>
-            <body>{children}</body>
-        </html>
+        <ToastQueueProvider>
+            <html lang="en" className={fontVariables}>
+                <body>{children}</body>
+            </html>
+        </ToastQueueProvider>
     )
 }

@@ -1,8 +1,11 @@
 import { ComponentType, FC, SVGProps } from "react";
-import { IconProps } from "./types";
+import { IconProps, IconSize } from "./types";
 import dynamic from "next/dynamic";
 import { colorsList } from "../color";
 
+const sizes = [
+  24, 32, 48
+]
 /**
  * Returns a React component that renders an SVG icon based on the provided icon type.
  *
@@ -20,9 +23,10 @@ function getIconComponent(iconType: number): ComponentType<SVGProps<SVGElement>>
  * @param {Colors} colorKey - The color key for the icon.
  * @return {JSX.Element} The rendered icon component.
  */
-export default function Icon({ type, color: colorKey }: IconProps) {
+export default function Icon({ type, color: colorKey, size }: IconProps) {
   const IconComponent = getIconComponent(type);
   const colorValue = colorsList[colorKey];
+  const iconSize = size ? sizes[size] : sizes[IconSize.S];
 
-  return <IconComponent width={24} height={24} color={colorValue} />;
+  return <IconComponent width={iconSize} height={iconSize} color={colorValue} />;
 };

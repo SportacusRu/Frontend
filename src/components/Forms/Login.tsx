@@ -3,7 +3,6 @@ import { Client } from "@/client";
 import { FormEvent } from "react";
 
 
-
 export default function Login() {
 
     const onSubmit = async (e: FormEvent<HTMLFormElement>) => {

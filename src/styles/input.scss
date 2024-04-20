@@ -7,8 +7,6 @@ textarea, input[type="text"], input[type="email"], input[type="password"] {
     color: var(--color-white);
     background: var(--color-body);
 
-    transition: var(--transition);
-
     &::placeholder {
         color: var(--color-grey-dark);
     }

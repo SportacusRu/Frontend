@@ -1,0 +1,34 @@
+.numberList {
+    display: flex;
+    justify-content: space-between;
+
+    width: 100%;
+    height: 40px;
+    background: var(--color-body-light);
+    border-radius: var(--border-radius-xs);
+
+    > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        width: 100%;
+        height: 100%;
+
+        transition: var(--transition);
+        
+        cursor: pointer;
+        border-radius: var(--border-radius-xs);
+    
+        &:not(.active):hover {
+            background: var(--color-grey-ultra-dark);
+        }
+    }
+}
+
+
+
+.active {
+    color: var(--color-body-light);
+    background: var(--color-accent);
+}

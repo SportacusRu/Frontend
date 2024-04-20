@@ -1,5 +1,7 @@
 .button {
     width: 100%;
+    height: fit-content;
+    
     padding: 16px;
     display: flex;
     justify-content: center;
@@ -7,6 +9,8 @@
     gap: 6px;
 
     border-radius: var(--border-radius-s);
+
+    cursor: pointer;
 }
 
 .main {
@@ -47,4 +51,8 @@
 
     border-radius: 50%;
     padding: 8px;
+}
+
+.icon {
+    background: var(--color-body-light);
 }

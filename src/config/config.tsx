@@ -15,4 +15,9 @@ const PLACE_CATEGORIES = [
     "воркаут", "бег", "зимние виды спорта",
 ] as const;
 
-export { CODE_LENGTH, PLACES_FILTERS, PLACE_CATEGORIES };
+const COOKIE_DATA = {
+    title: "Мы используем файлы cookie",
+    text: "Для хранения информации о посещение нашего сайта и отслеживаем местоположение для работы карты."
+}
+
+export { CODE_LENGTH, PLACES_FILTERS, PLACE_CATEGORIES, COOKIE_DATA };

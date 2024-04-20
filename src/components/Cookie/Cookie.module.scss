@@ -1,0 +1,43 @@
+.cookie {
+    box-sizing: border-box;
+
+    width: 656px;
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    transition: var(--transition);
+
+    background: var(--color-body-light);
+    border-radius: var(--border-radius-xl);
+
+    padding: 32px 24px;
+    
+    &Data {
+        display: flex;
+        flex-direction: column;
+        width: 430px;
+        gap: 8px;
+
+        > p {
+            color: var(--color-grey)
+        } 
+        span {
+            margin-left: 8px;
+        }
+    }
+
+    button {
+        width: 141px
+    }
+    
+}
+
+.hide {
+    opacity: 0;
+    visibility: hidden;
+}

@@ -7,7 +7,8 @@ export enum ButtonType {
     Danger,
     DangerDark,
     Outline,
-    Circle
+    Circle,
+    Icon
 }
 
 export type ButtonProps = {

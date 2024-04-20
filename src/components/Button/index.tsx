@@ -6,7 +6,7 @@ import { Subhead } from "../Typography";
 const ButtonStyles = [
     s.main, s.primary, s.primaryDark, 
     s.danger, s.dangerDark, s.outline, 
-    s.circle
+    s.circle, s.icon
 ] as const;
 
 /**

@@ -7,6 +7,7 @@ const ToastQueueContext = createContext({} as ToastQueue);
 
 export const useToastQueue = () => useContext(ToastQueueContext);
 
+
 export default function ToastQueueProvider(
     {children}: {children: React.ReactNode}
 ) {

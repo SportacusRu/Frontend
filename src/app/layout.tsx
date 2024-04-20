@@ -6,6 +6,8 @@ import "@/styles/global.css";
 import "@/styles/typography.css";
 import "@/styles/input.scss";
 import ToastQueueProvider from "@/shared/ToastQueueProvider";
+import ToastFabric from "@/components/ToastFabric";
+import Cookie from "@/components/Cookie";
 
 
 export const viewport: Viewport = {
@@ -45,7 +47,11 @@ export default function RootLayout({
     return (
         <ToastQueueProvider>
             <html lang="en" className={fontVariables}>
-                <body>{children}</body>
+                <body>
+                    <ToastFabric />
+                    <Cookie />
+                    {children}
+                </body>
             </html>
         </ToastQueueProvider>
     )

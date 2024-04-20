@@ -1,0 +1,20 @@
+.MoreLinksItem {
+    position: relative;
+    box-sizing: border-box;
+    color: var(--color-white);
+
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    
+    cursor: pointer;
+}
+
+.MoreLinksItem:hover > svg{
+    color: #fff;
+}
+.MoreLinksItem > svg {
+    transform: rotate(180deg);
+    transition: var(--transition);
+}
+

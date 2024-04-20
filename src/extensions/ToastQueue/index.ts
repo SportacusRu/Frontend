@@ -1,35 +1,30 @@
-class ToastNode {
-    public readonly message: string;
-    public readonly next?: ToastNode;
+import React, { useState } from "react";
 
-    constructor({ message, next }: { message: string, next?: ToastNode }) {
-        this.message = message;
-        this.next = next;
-    }
+export type ToastNode = {
+    value: string,
+    id: number,
 }
 
 export class ToastQueue {
-    private _start: ToastNode | undefined;
-    private _tail: ToastNode | undefined;
-
+    public queue: ToastNode[] = []
+    private setQueue: React.Dispatch<React.SetStateAction<ToastNode[]>>;
+    
+    constructor() {
+        [this.queue, this.setQueue] = useState<ToastNode[]>([]);
+    }
 
     public add(message: string) {
-        {
-            if (this._start === undefined) {
-                const newNode = new ToastNode({ message: message });
-                this._start = newNode;
-                this._tail = newNode;
-            } else {
-                this._tail = new ToastNode({ message: message, next: this._tail }); 
-            }
+        if (this.queue.length < 1) {
+            this.setQueue([...this.queue, {value: message, id: this.queue.length}]);
         }
     }
-    public peek() : string | undefined {
-        return this._start?.message;
+    public peek() : ToastNode {
+        return this.queue[0];
     }
-    public pop() : string | undefined {
-        const message = this._start?.message;
-        this._start = this._start?.next;
-        return message;
+
+    public pop() : ToastNode {
+        const item = this.queue[0];
+        this.setQueue(this.queue.filter((i) => i.id != item.id));
+        return item
     }
 }

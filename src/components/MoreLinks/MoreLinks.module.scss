@@ -1,0 +1,25 @@
+.MoreLinksItem {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    width: 100%;
+    padding: 16px;
+
+    background: var(--color-body-light);
+    border-radius: var(--border-radius-s);
+
+    > :not(div:last-child)::after {
+        content: "";
+        box-sizing: border-box;
+        width: 100%;
+        height: 1px;
+
+        position: absolute;
+        top: 34px;
+
+        background-color: var(--color-grey-ultra-dark);
+    }
+    
+}

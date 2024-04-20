@@ -1,0 +1,38 @@
+.toast {
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1);
+    position: absolute;
+
+    transition: var(--transition);
+    width: 100%;
+    height: fit-content;
+
+    box-sizing: border-box;
+    padding: 24px;
+    background: var(--color-body-light);
+    border-radius: var(--border-radius-xl);
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    z-index: 1000;
+
+    h2 {
+        color: var(--color-white);
+        > span {
+            margin-right: 8px;
+        }
+    }
+    p {
+        color: var(--color-grey);
+    }
+}
+
+.hide {
+    visibility: hidden;
+    opacity: 0;
+    transform-origin: center;
+    transform: scale(0.7);
+}

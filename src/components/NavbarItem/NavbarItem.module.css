@@ -1,0 +1,21 @@
+.navbarItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+
+    flex: 1;
+    height: 100%;
+
+    cursor: pointer;
+}
+
+.navbarItem > p {
+    color: var(--color-grey-dark);
+    user-select: none;
+}
+
+.active > p {
+    color: var(--color-accent)
+}

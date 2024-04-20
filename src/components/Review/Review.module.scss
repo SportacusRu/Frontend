@@ -1,0 +1,45 @@
+.review {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 16px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    background: var(--color-body-light);
+    border-radius: var(--border-radius-xl);
+
+    &Header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &Content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            > div {
+                width: 100%;
+                color: var(--color-white);
+
+                p:nth-child(2) {
+                    color: var(--color-grey)
+                }
+            }
+        }
+    }
+    &Rating {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    > p {
+        color: var(--color-grey-light);
+        width: 100%;
+    }
+}

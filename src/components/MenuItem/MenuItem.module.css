@@ -2,6 +2,16 @@
     display: flex;
     align-items: center;
     gap: 4px;
+
+    cursor: pointer;
+    transition: var(--transition);
+    
+    border-radius: var(--border-radius-xs);
+    padding: 6px;
+}
+
+.menuItem:hover {
+    background: var(--color-body-light-lighten);
 }
 
 .menuItem > p {

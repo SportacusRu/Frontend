@@ -6,6 +6,7 @@
     --color-grey: #999999;
     --color-grey-dark: #666666;
     --color-grey-ultra-dark: #333333;
+    --color-body-light-lighten: #262626;
     --color-body-light: #161616;
     --color-body: #000000;
 
@@ -15,6 +16,7 @@
     --backdrop-filter-1: blur(18px);
     --backdrop-filter-2: blur(30px);
 
+    --border-radius-xxs: 6px;
     --border-radius-xs: 12px;
     --border-radius-s: 16px;
     --border-radius-m: 24px;

@@ -1,0 +1,62 @@
+.place {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    max-width: 430px;
+
+    border-radius: var(--border-radius-m);
+    background: var(--color-body-light);
+
+    &ButtonList {
+        width: fit-content;
+        display: flex;
+    }
+
+    &Info {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    &Content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        width: 100%;
+        padding: 24px;
+        padding-top: 12px;
+        box-sizing: border-box;
+    }
+
+    &Image {
+        width: 100%;
+        overflow-x: hidden;
+        position: relative;
+
+        > p {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+
+            text-transform: uppercase;
+
+            border-radius: var(--border-radius-xs);
+            background: var(--color-accent);
+            color: var(--color-grey-ultra-dark);
+
+            padding: 10px;
+        }
+
+        > img {
+            object-fit: cover;
+            border-radius: var(--border-radius-m);
+            position: relative;
+            width: 100%;
+            height: auto;
+            max-height: 300px;
+        }
+    }
+}

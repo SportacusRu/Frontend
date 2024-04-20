@@ -1,8 +1,6 @@
-import Cookie from "@/components/Cookie";
+import Place from "@/components/Place";
 import { HomeProps } from "./types";
 import { Client } from "@/client";
-import { Toast } from "@/components/Toast";
-import ToastFabric from "@/components/ToastFabric";
 
 
 export default async function Home({ searchParams }: HomeProps) {
@@ -10,6 +8,7 @@ export default async function Home({ searchParams }: HomeProps) {
   const currentPlace = places.findLast(place => place.place_id == searchParams?.place_id);
   return (
     <main>
+      
     </main>
   )
 }

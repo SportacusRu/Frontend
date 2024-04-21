@@ -11,8 +11,8 @@ import s from "./Link.module.css";
  * @param {React.ReactNode} icon - The optional icon to display alongside the link.
  * @return {JSX.Element} The rendered link component.
  */
-export default function Link({href, children, icon}: LinkProps) {
-    return <NextLink href={href} className={s.Link}>
+export default function Link({href, children, icon, onClick}: LinkProps) {
+    return <NextLink href={href ? href : ""} className={s.Link} onClick={onClick}>
         {icon ? icon : <></>}
         {children}
     </NextLink>

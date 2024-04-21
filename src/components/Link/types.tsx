@@ -1,7 +1,8 @@
 import React from "react"
 
 export type LinkProps = {
-    href: string
+    href?: string
+    onClick?: () => void
     children: React.ReactNode
     icon?: React.ReactNode
 }

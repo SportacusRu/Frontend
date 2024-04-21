@@ -1,3 +1,4 @@
+import { Icons } from "@/components/Icon/types";
 
 const CODE_LENGTH = 4 as const;
 
@@ -20,4 +21,22 @@ const COOKIE_DATA = {
     text: "Для хранения информации о посещение нашего сайта и отслеживаем местоположение для работы карты."
 }
 
-export { CODE_LENGTH, PLACES_FILTERS, PLACE_CATEGORIES, COOKIE_DATA };
+const NAVBAR_PAGES = [
+    {
+        title: "Гланая",
+        icon: Icons.home
+    },
+    {
+        title: "Карта",
+        icon: Icons.radar
+    },
+    {
+        title: "Профиль",
+        icon: Icons.profile
+    },
+] as const;
+
+export { 
+    CODE_LENGTH, PLACES_FILTERS, PLACE_CATEGORIES, 
+    COOKIE_DATA, NAVBAR_PAGES 
+};

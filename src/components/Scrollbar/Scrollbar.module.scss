@@ -1,0 +1,21 @@
+.verticalTrack {
+    display: block;
+    right: 0;
+    width: 10px;
+    top: 0;
+    height: 100%;
+    background: #000;
+    z-index: 990;
+}
+
+.verticalThumb {
+    display: block;
+    right: 0;
+    width: 10px;
+    top: 0;
+    height: 100%;
+    background: var(--color-grey-ultra-dark);
+    z-index: 991;
+
+    border-radius: var(--border-radius-xs);
+}

@@ -55,4 +55,6 @@
 
 .icon {
     background: var(--color-body-light);
+    border-radius: var(--border-radius-xs);
+    padding: 8px;
 }

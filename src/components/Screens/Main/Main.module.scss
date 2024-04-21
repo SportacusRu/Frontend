@@ -1,8 +1,41 @@
 .main {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+
+    overflow-x: hidden;
+
     &Content {
         width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
+        gap: 36px;
+
+        > div:last-child {
+            padding-bottom: 24px;
+        }
+    }
+
+    &Recommended {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 24px;
+    }
+}
+
+.logo {
+    padding: 24px;
+    padding-bottom: 36px;
+}
+
+@media (max-width: 430px) {
+    .main {
+        &Content {
+            > div:last-child {
+                padding-bottom: 120px;
+            }
+        }
     }
 }

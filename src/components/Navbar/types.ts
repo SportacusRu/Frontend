@@ -8,7 +8,7 @@ type NavbarItemObject = {
 
 
 export type NavbarProps = {
-    items: Array<NavbarItemObject>,
+    items: ReadonlyArray<NavbarItemObject>,
     screen: number,
     setScreen: Dispatch<SetStateAction<number>>
 }

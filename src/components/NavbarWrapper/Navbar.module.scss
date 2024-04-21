@@ -1,5 +1,5 @@
 .navbar {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     
     box-sizing: border-box;
@@ -9,8 +9,9 @@
     justify-content: space-between;
 
     width: 100%;
-    padding: 20px 16px;
+    padding: 12px 20px;
 
     border-top: 1px solid var(--color-grey-ultra-dark);
     background: var(--color-body);
+    z-index: 999;
 }

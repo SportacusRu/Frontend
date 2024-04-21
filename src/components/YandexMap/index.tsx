@@ -15,6 +15,12 @@ import {
 import { YMapDefaultModules } from "ymap3-components/dist/src/types";
 import { YandexMapProps } from "./types";
 import { StringToLngLat } from "@/extensions/ymap";
+import useWidth from "@/hooks/useWidth";
+import Button from "../Button";
+import { ButtonType } from "../Button/types";
+import Icon from "../Icon";
+import { Icons } from "../Icon/types";
+import { Colors } from "../color";
 
 const API_KEY = process.env.NEXT_PUBLIC_YANDEX_MAP_KEY 
                 ? process.env.NEXT_PUBLIC_YANDEX_MAP_KEY 
@@ -22,6 +28,7 @@ const API_KEY = process.env.NEXT_PUBLIC_YANDEX_MAP_KEY
 
 function YandexMap({ PlacesList, currentPlace } : YandexMapProps) {
   const [userPosition, setUserPosition] = useState<LngLat>([60.658035, 56.842906])
+  const width = useWidth();
 
   const onLoadHandler = (y: YMapDefaultModules) => {
       y.ymaps.geolocation.getPosition()
@@ -54,6 +61,9 @@ function YandexMap({ PlacesList, currentPlace } : YandexMapProps) {
       <YMapControls position="top left">
         <YMapZoomControl />
         <YMapGeolocationControl onGeolocatePosition={getGeolocatePosition}/>
+      </YMapControls>
+      <YMapControls position="top right">
+        
       </YMapControls>
     </YMap>
     </YMapComponentsProvider>

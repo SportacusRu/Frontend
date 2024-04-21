@@ -9,4 +9,7 @@
     background: var(--color-body-light);
     border: 1px solid var(--color-grey-ultra-dark);
     border-radius: var(--border-radius-s);
+
+    position: relative;
+    z-index: 2000;
 }

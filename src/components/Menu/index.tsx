@@ -8,9 +8,9 @@ import { Icons } from "../Icon/types";
 import { Colors } from "../color";
 
 
-export default function({children}: {children: React.ReactNode}) {
+export default function({children, color}: {children: React.ReactNode, color?: Colors}) {
     const menuButton = <MenuButton>
-        <Icon type={Icons.more} color={Colors.greyDark}/>
+        <Icon type={Icons.more} color={color ? color : Colors.greyDark}/>
     </MenuButton>
     return (
         <Menu 

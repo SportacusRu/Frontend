@@ -1,13 +1,18 @@
 "use client";
 
-import { Places } from "@/client/models/types";
 import YandexMap from "../YandexMap";
 import { PlacesMapProps } from "./types";
-import { useEffect, useState } from "react";
 import { YMapMarker } from "ymap3-components";
 import { StringToLngLat } from "@/extensions/ymap";
 import Image from "next/image";
-import { useRouter } from "next/navigation"
+import s from "./PlacesMap.module.css"
+import { useState } from "react";
+import { ClipLoader } from "react-spinners";
+import { Colors, colorsList } from "../color";
+import { Client } from "@/client";
+
+
+const accentColor = colorsList[Colors.accent];
 
 /**
  * Renders a map of places with markers.
@@ -16,10 +21,14 @@ import { useRouter } from "next/navigation"
  * @param {Place} currentPlace - The current place selected on the map
  * @return {JSX.Element} The Yandex Map component with the list of place markers
  */
-export default function PlacesMap({ places, currentPlace }: PlacesMapProps) {
-  const router = useRouter();
-
-  const handlePlaceClick = (placeId: number) => router.push(`/?place_id=${placeId}`);
+export default function PlacesMap({ places, currentPlace, setCurrentPlace, setReviews}: PlacesMapProps) {
+  const [loading, setLoading] = useState(false)
+  const handlePlaceClick = async(placeId: number) => {
+    setLoading(true)
+    setCurrentPlace(places.find(place => place.place_id === placeId))
+    setReviews(await Client.reviews.getByPlaceId(placeId));
+    setLoading(false)
+  }
 
   const placeMarkers = places.map(place => (
     <YMapMarker
@@ -31,5 +40,12 @@ export default function PlacesMap({ places, currentPlace }: PlacesMapProps) {
     </YMapMarker>
   ));
 
-  return <YandexMap PlacesList={placeMarkers} currentPlace={currentPlace} />;
+  return <div className={s.mapWrapper}>
+    {
+      loading ? <div className={s.loader}>
+        <ClipLoader loading={loading} color={accentColor}/>
+      </div> : <></>
+    }
+    <YandexMap PlacesList={placeMarkers} currentPlace={currentPlace} />;
+  </div>
 }

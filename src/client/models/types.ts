@@ -14,6 +14,9 @@ export type Reviews = {
     description: string
     photos: string[]
     grade: number
+    user_photo: string
+    user_name: string
+    created_at: string
 }
 
 export type Places = {

@@ -40,3 +40,41 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+input[type=file] { 
+    display: block; 
+    height: 0;
+    width: 0;
+    visibility: hidden;
+
+    margin: 0;
+    padding: 0;
+}
+
+.imageUploader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 80px;
+  height: 80px;
+
+  border-radius: var(--border-radius-s);
+  border: 1px dashed var(--color-grey-light);
+
+  cursor: pointer;
+
+  transition: var(--transition);
+
+  margin: 0;
+  padding: 0;
+
+  &Wrapper {
+    width: 82px;
+    height: 82px;
+  }
+  &:hover {
+    background: var(--color-body-light);
+  }
+}
+

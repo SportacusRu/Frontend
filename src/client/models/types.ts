@@ -19,12 +19,14 @@ export type Reviews = {
 export type Places = {
     place_id: number
     user_id: number
-    title: number
+    rating: number
+    title: string
     geo: string
-    description: number
+    description: string
     reviews_list: Reviews[]
-    category: number
-    filters_list: string[]
+    category: string
+    filters_list: string[],
+    preview: string
 }
 
 export type User = {

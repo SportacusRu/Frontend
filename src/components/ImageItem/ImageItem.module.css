@@ -1,0 +1,30 @@
+.imageItem {
+    position: relative;
+    width: 80px;
+    height: 80px;
+
+    border-radius: var(--border-radius-s);
+    overflow: hidden;
+}
+
+.imageItem img {
+    object-fit: cover;
+}
+
+.imageItem > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 80px;
+    height: 80px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: var(--color-blackout);
+
+    cursor: pointer;
+}
+

@@ -23,7 +23,7 @@ class PlacesRouter extends baseRouter {
         return response.data;
     }
 
-    async get_recommended_place() : Promise<Places> {
+    async getRecommended() : Promise<Places> {
         const response: AxiosResponse<Places> = await this.__client.get(
             this.__BASE_URL + "/getRecommendedPlace"
         )

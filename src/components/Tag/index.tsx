@@ -4,10 +4,11 @@ import { SubheadUppercase } from "../Typography";
 import classNames from "@/extensions/classNames";
 
 
-function Tag({children, active} : TagProps) {
-    const classes = classNames(s.Tag, active ? s.active : "");
+function Tag({children, active, onClick} : TagProps) {
+    const classes = classNames(s.Tag, active ? s.active : "")
+
     return (
-        <div className={classes}>
+        <div className={classes} onClick={onClick}>
             <SubheadUppercase>
                 {children}
             </SubheadUppercase>

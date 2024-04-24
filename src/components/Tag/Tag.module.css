@@ -5,8 +5,12 @@
     border-radius: var(--border-radius-xs);
     background: var(--color-body-light);
     color: var(--color-grey-light);
+
+    cursor: pointer;
+    user-select: none;
 }
+
 .active {
     background: var(--color-accent);
-    color: var(--color-grey-ultra-light)
+    color: var(--color-grey-ultra-dark);
 }

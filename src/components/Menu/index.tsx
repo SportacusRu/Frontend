@@ -9,15 +9,15 @@ import { Colors } from "../color";
 
 
 export default function({children, color}: {children: React.ReactNode, color?: Colors}) {
-    const menuButton = <MenuButton>
+    const menuButton = <MenuButton className={s.menuButton}>
         <Icon type={Icons.more} color={color ? color : Colors.greyDark}/>
     </MenuButton>
     return (
         <Menu 
-            direction="bottom"
+            direction="left"
+            reposition="initial"
             menuButton={menuButton} 
             menuClassName={s.menu}
-            transition
         >
             {children}
         </Menu>

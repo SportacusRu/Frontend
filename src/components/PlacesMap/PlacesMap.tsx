@@ -21,8 +21,11 @@ const accentColor = colorsList[Colors.accent];
  * @param {Place} currentPlace - The current place selected on the map
  * @return {JSX.Element} The Yandex Map component with the list of place markers
  */
-export default function PlacesMap({ places, currentPlace, setCurrentPlace, setReviews}: PlacesMapProps) {
+export default function PlacesMap({ 
+  places, currentPlace, setCurrentPlace, setReviews
+}: PlacesMapProps) {
   const [loading, setLoading] = useState(false)
+  
   const handlePlaceClick = async(placeId: number) => {
     setLoading(true)
     setCurrentPlace(places.find(place => place.place_id === placeId))

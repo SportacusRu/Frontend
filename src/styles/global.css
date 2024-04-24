@@ -30,8 +30,10 @@
 a { color: inherit }
 button { background-color: inherit }
 
-svg *[fill] { fill: currentColor }
-svg *[stroke] { stroke: currentColor }
+svg *[color] { 
+    fill: currentColor;
+    stroke: currentColor
+}
 
 html {
     -webkit-text-rendering: optimizeSpeed;

@@ -1,0 +1,15 @@
+.swiper {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.slide {
+    width: fit-content;
+}
+.slide:nth-child(1) {
+    padding-left: 24px;
+}
+
+.slide:last-child {
+    padding-right: 24px;
+}

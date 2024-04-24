@@ -3,6 +3,8 @@ import { Client } from "@/client";
 import View from "@/components/View";
 import "./page.scss"
 import getCurrentPlace from "@/client/controllers/getCurrentPlace";
+import UserPositionProvider from "@/shared/UserPositionProvider";
+import FiltersProvider from "@/shared/FiltersProvider";
 
 
 export default async function Home({ searchParams }: HomeProps) {
@@ -10,8 +12,12 @@ export default async function Home({ searchParams }: HomeProps) {
   const [currentPlace, reviews] = await getCurrentPlace(searchParams?.place_id);
   
   return (
-    <main>
-      <View places={places} reviews={reviews} currentPlace={currentPlace}/>
-    </main>
+    <UserPositionProvider>
+      <FiltersProvider>
+        <main>
+          <View places={places} reviews={reviews} currentPlace={currentPlace}/>
+        </main>
+      </FiltersProvider>
+    </UserPositionProvider>
   )
 }

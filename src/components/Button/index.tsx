@@ -2,6 +2,7 @@ import { ButtonProps } from "./types";
 import s from "./Button.module.css"
 import classNames from "@/extensions/classNames";
 import { Subhead } from "../Typography";
+import Link from "next/link";
 
 const ButtonStyles = [
     s.main, s.primary, s.primaryDark, 
@@ -21,11 +22,11 @@ export default function Button(
     const buttonClassName = classNames(s.button, ButtonStyles[type]);
 
     return (
-        <button className={buttonClassName} onClick={onClick}>
-            {icon ? icon : <></>}
-            {children ? <Subhead>
-                {children}
-            </Subhead> : <></>}
-        </button>
+            <button className={buttonClassName} onClick={onClick}>
+                    {icon ? icon : <></>}
+                    {children ? <Subhead>
+                        {children}
+                    </Subhead> : <></>}
+            </button>
     );
 }

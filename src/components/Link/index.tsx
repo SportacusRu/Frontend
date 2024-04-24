@@ -12,7 +12,7 @@ import s from "./Link.module.css";
  * @return {JSX.Element} The rendered link component.
  */
 export default function Link({href, children, icon, onClick}: LinkProps) {
-    return <NextLink href={href ? href : ""} className={s.Link} onClick={onClick}>
+    return <NextLink href={href ? href : "#"} className={s.Link} onClick={onClick}>
         {icon ? icon : <></>}
         {children}
     </NextLink>

@@ -35,10 +35,13 @@ export class Client {
     }
 
     static get authorized(): boolean {
-        const token = document.cookie.split(";").find(s => s.startsWith("access_token="))?.substring(13);
-        if (token !== undefined) {
-            this.client.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-        }
-        return this.client.defaults.headers.common['Authorization'] !== undefined && token !== undefined;
+        if (typeof window !== 'undefined') {
+            const token = document.cookie.split(";").find(s => s.startsWith("access_token="))?.substring(13);
+            if (token !== undefined) {
+                this.client.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+            }
+            return this.client.defaults.headers.common['Authorization'] !== undefined && token !== undefined;
+        } 
+        return false;
     } 
 }

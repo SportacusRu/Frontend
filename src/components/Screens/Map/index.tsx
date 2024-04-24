@@ -1,7 +1,27 @@
-import { Places } from "@/client/models/types";
 import PlacesMap from "@/components/PlacesMap/PlacesMap";
-import PlaceScreen from "../Place";
+import { MapScreenProps } from "./types";
+import useWidth from "@/hooks/useSize";
+import PlaceModal from "../../Modals/Place";
+import FiltersModal from "@/components/Modals/Filters";
 
-export default function({places, currentPlace} : { places: Places[], currentPlace?: Places }) {
-    return <PlacesMap places={places} currentPlace={undefined} />
+
+export default function MapScreen({
+    places, currentPlace, setCurrentPlace, setReviews, reviews, setScreen
+} : MapScreenProps) {
+    const { width } = useWidth()
+    return <>
+        {width && width <= 430 ? <PlacesMap 
+            places={places} 
+            currentPlace={currentPlace} 
+            setCurrentPlace={setCurrentPlace} 
+            setReviews={setReviews} 
+        /> : <></>}
+        {currentPlace && reviews ? <PlaceModal 
+            reviews={reviews} 
+            currentPlace={currentPlace} 
+            setCurrentPlace={setCurrentPlace} 
+            setReviews={setReviews}
+            setScreen={setScreen}
+        /> : <FiltersModal setScreen={setScreen}/>}
+    </>
 }

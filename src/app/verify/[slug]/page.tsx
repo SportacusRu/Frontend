@@ -19,9 +19,9 @@ export default function Verify({ params } : VerifyProps) {
 
     const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        if (password.value == verifyPassword.value)
+        if (password.value == verifyPassword.value && password.validateResult)
             await setNewPassword(params.slug, password, toastQueue);
-        else toastQueue.add("Пароли не совпадают");
+        else toastQueue.add("Пароли не совпадают или меньше 6 символов");
     }
     return (
         <main>

@@ -20,7 +20,7 @@ function getIconComponent(iconType: number): ComponentType<SVGProps<SVGElement>>
  */
 export default function Icon({ type, color, size }: IconProps): JSX.Element {
   const IconComponent = useMemo(() => getIconComponent(type), [type]);
-  const colorValue = colorsList[color];
+  const colorValue = color !== undefined ? colorsList[color] : undefined;
   const iconSize = size ? sizes[size] : sizes[IconSize.S];
 
   return <IconComponent width={iconSize} height={iconSize} color={colorValue} />;

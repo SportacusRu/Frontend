@@ -1,0 +1,16 @@
+.Image {
+    width: 100%;
+    height: auto;
+}
+
+.swiper {
+    position: relative;
+}
+
+.сounter {
+    bottom: 24px;
+    left: 0;
+    right: 0;
+    position: absolute;
+    z-index: 888;
+}

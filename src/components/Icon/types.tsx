@@ -73,6 +73,6 @@ export enum IconSize {
 
 export type IconProps = {
     type: Icons
-    color: Colors
+    color?: Colors
     size?: IconSize
 }

@@ -66,7 +66,7 @@ export default function(props : ViewProps) {
             />
         }
         {
-            (width && width >= 430) || (screen == 1) ? <div className={"actionButtons"}>
+            ((width && width >= 430) || (screen == 1)) ? <div className={"actionButtons"}>
                 <Button 
                     type={ButtonType.Icon} 
                     icon={<Icon type={Icons.add} color={Colors.greyLight}/>}

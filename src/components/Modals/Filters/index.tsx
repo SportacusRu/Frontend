@@ -50,7 +50,7 @@ export default function FiltersModal({ setScreen } : FiltersModalState) {
     }
 
     return (
-        <Modal background={false}>
+        <>
             {width > 430 ? 
                 <div className={s.header}>
                     {authorized ? <Link 
@@ -63,11 +63,13 @@ export default function FiltersModal({ setScreen } : FiltersModalState) {
             <div 
                 className={s.filterScreen}
                 style={width <= 430 ? {height: `${containerHeight}px`} : {}}
-                onTouchStart={onMouseDownHandler}
-                onTouchEnd={onMouseUpHandler}
-                onTouchMove={onDragHandler}
             >
-                {width <= 430 ? <div className={s.filterScreenHandle}>
+                {width <= 430 ? <div 
+                    className={s.filterScreenHandle}
+                    onTouchStart={onMouseDownHandler}
+                    onTouchEnd={onMouseUpHandler}
+                    onTouchMove={onDragHandler}
+                >
                     <div></div>
                 </div> : <></>}
                 <FiltersSlider reducer={[store, dispatch]}/>
@@ -80,6 +82,6 @@ export default function FiltersModal({ setScreen } : FiltersModalState) {
                     </div>
                 </Scrollbar>
             </div>
-        </Modal>
+        </>
     )
 }

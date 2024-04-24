@@ -19,6 +19,7 @@ import { ButtonType } from "@/components/Button/types";
 import Icon from "@/components/Icon";
 import Modal from "..";
 import { useUserPosition } from "@/shared/UserPositionProvider";
+import Scrollbar from "@/components/Scrollbar";
 
 
 export default function PlaceModal({
@@ -27,7 +28,7 @@ export default function PlaceModal({
     const [reviewsPhotos, setReviewsPhotos] = useState<string[]>([]);
     const { position } = useUserPosition()
     useEffect(() => setReviewsPhotos(reviews.flatMap(r => r.photos)), [reviews])
-    console.log(10)
+
     const handleCancel = () => {
         setCurrentPlace(undefined)
         setReviews(undefined)
@@ -42,78 +43,84 @@ export default function PlaceModal({
     }
     return (
         <Modal background={false}>
-            <div className={s.placeScreen}>
-                <div className={s.placeScreenHeader}>
-                    <header>
-                        <Button 
-                            type={ButtonType.Circle} 
-                            icon={<Icon type={Icons.arrowLeft} color={Colors.white}/>}
-                            onClick={handleCancel}
-                        />
-                        <Button type={ButtonType.Circle}>
-                            <Menu color={Colors.white}>
-                                <MenuItem icon={Icons.share} color={Colors.white}>
-                                    Поделиться
-                                </MenuItem>
-                                <MenuItem icon={Icons.edit} color={Colors.white}>
-                                    Оставить отзыв
-                                </MenuItem>
-                                <MenuItem icon={Icons.complaints} color={Colors.danger}>
-                                    Пожаловаться
-                                </MenuItem>
-                            </Menu>
-                        </Button>
-                    </header>
-                    <ImagesSlider images={reviewsPhotos}/>
-                </div>
-                <FiltersSlider 
-                    filters={currentPlace.filters_list} 
-                    category={currentPlace.category} 
-                />
-                <div className={s.placeScreenContent}>
-                    <h1 className={s.placeScreenTitle}>{currentPlace.title}</h1>
-                    <div className={s.placeScreenInfo}>
-                        <Stars rating={currentPlace.rating}/>
-                        <div className={s.placeScreenButtons}>
-                            <Button 
-                                type={ButtonType.Icon} 
-                                icon={<Icon type={Icons.like} color={Colors.greyDark}/>}
+            <div className={s.placeScreenWrapper}>
+                <Scrollbar className={s.scroll}>
+                    <div className={s.placeScreen}>
+                        <div className={s.placeScreenHeader}>
+                            <header>
+                                <Button 
+                                    type={ButtonType.Circle} 
+                                    icon={<Icon type={Icons.arrowLeft} color={Colors.white}/>}
+                                    onClick={handleCancel}
+                                />
+                                <Button type={ButtonType.Circle}>
+                                    <Menu color={Colors.white}>
+                                        <MenuItem icon={Icons.share} color={Colors.white}>
+                                            Поделиться
+                                        </MenuItem>
+                                        <MenuItem icon={Icons.edit} color={Colors.white}>
+                                            Оставить отзыв
+                                        </MenuItem>
+                                        <MenuItem icon={Icons.complaints} color={Colors.danger}>
+                                            Пожаловаться
+                                        </MenuItem>
+                                    </Menu>
+                                </Button>
+                            </header>
+                            <ImagesSlider images={reviewsPhotos}/>
+                        </div>
+                        <div className={s.placeScreenFiltersWrapper}>
+                            <FiltersSlider 
+                                filters={currentPlace.filters_list} 
+                                category={currentPlace.category} 
                             />
+                        </div>
+                        <div className={s.placeScreenContent}>
+                            <h1 className={s.placeScreenTitle}>{currentPlace.title}</h1>
+                            <div className={s.placeScreenInfo}>
+                                <Stars rating={currentPlace.rating}/>
+                                <div className={s.placeScreenButtons}>
+                                    <Button 
+                                        type={ButtonType.Icon} 
+                                        icon={<Icon type={Icons.like} color={Colors.greyDark}/>}
+                                    />
+                                    <Button 
+                                        type={ButtonType.Icon} 
+                                        icon={<Icon type={Icons.unlike} color={Colors.greyDark}/>}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div className={s.placeScreenButton}>
                             <Button 
-                                type={ButtonType.Icon} 
-                                icon={<Icon type={Icons.unlike} color={Colors.greyDark}/>}
+                                type={ButtonType.MainColor}
+                                onClick={handleCreateMap}
+                            >
+                                Построить маршрут
+                            </Button>
+                        </div>
+                        <p className={s.placeScreenDescription}>
+                            {currentPlace.description}
+                        </p>
+                        <div className={s.placeScreenReviews}>
+                            <Slider slides={
+                                    reviews.map(review => <Review 
+                                    place_id={currentPlace.place_id} 
+                                    review_id={review.review_id} 
+                                    rating={review.grade} 
+                                    description={review.description} 
+                                    userName={review.user_name} time={review.created_at} viewUserPage={false} />)
+                            } 
+                            data={{
+                                title: "Отзывы",
+                            }}    
+                            link={{
+                                title: "Добавить отзыв",
+                            }}            
                             />
                         </div>
                     </div>
-                </div>
-                <div className={s.placeScreenButton}>
-                    <Button 
-                        type={ButtonType.MainColor}
-                        onClick={handleCreateMap}
-                    >
-                        Построить маршрут
-                    </Button>
-                </div>
-                <p className={s.placeScreenDescription}>
-                    {currentPlace.description}
-                </p>
-                <div className={s.placeScreenReviews}>
-                <Slider slides={
-                        reviews.map(review => <Review 
-                        place_id={currentPlace.place_id} 
-                        review_id={review.review_id} 
-                        rating={review.grade} 
-                        description={review.description} 
-                        userName={review.user_name} time={review.created_at} viewUserPage={false} />)
-                } 
-                data={{
-                    title: "Отзывы",
-                }}    
-                link={{
-                    title: "Добавить отзыв",
-                }}            
-                />
-                </div>
+                </Scrollbar>
             </div>
         </Modal>
     )

@@ -39,7 +39,7 @@ export default function(props : ReviewProps) {
             </Menu>
         </div>
         <div className={s.reviewRating}>
-            <Headline>Оценка оборудования</Headline>
+            <Headline>Оценка</Headline>
             <Stars rating={props.rating}/>
         </div>
     

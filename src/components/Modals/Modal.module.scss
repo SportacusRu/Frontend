@@ -20,9 +20,10 @@
 }
 
 .content {
+    position: relative;
     box-sizing: border-box;
     width: 100%;
-    height: auto;
+    height: 100%;
 
-    z-index: 800;
+    z-index: 1001;
 }

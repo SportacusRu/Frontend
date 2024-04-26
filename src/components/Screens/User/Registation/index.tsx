@@ -10,7 +10,6 @@ import { FormEvent, useState } from "react";
 import { RegistationStages } from "./types";
 import { useToastQueue } from "@/shared/ToastQueueProvider";
 import { Client } from "@/client";
-import { Stages } from "../Authentication/types";
 import VerifyCode from "./verifyCode";
 
 

@@ -1,7 +1,9 @@
 import s from "./Modal.module.scss"
 
 
-export default function Modal({children, background}: {children: React.ReactNode, background: boolean}) {
+export default function Modal(
+    {children, background} : {children: React.ReactNode, background: boolean}
+) {
     return (
         <div className={s.modal}>
             <div className={s.content}>

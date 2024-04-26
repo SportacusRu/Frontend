@@ -23,7 +23,7 @@ export default function FiltersModal() {
     const { height, width } = useSize()
     const [store, dispatch] = useFilters();
     const authorized = Client.authorized
-    const [screen, setScreen] = useScreen()
+    const [_, setScreen] = useScreen()
     const [containerHeight, setContainerHeight] = useState(120)
     const [draggable, setDraggable] = useState(false)
     

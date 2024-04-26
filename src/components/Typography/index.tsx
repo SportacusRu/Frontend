@@ -1,23 +1,30 @@
+function GetText({ 
+    classes, children 
+} : {classes: string, children: React.ReactNode}) {
+    return <p className={classes}>{children}</p>;
+}
+
 export function LargeTitle({ children }: { children: React.ReactNode }) {
     return <h1 className="largeTitle">{children}</h1>;
 }
 
-export function Headline({ children }: { children: React.ReactNode }) {
-    return <p className="headline">{children}</p>;
-}
+export const Headline = (
+    { children }: { children: React.ReactNode }
+) => <GetText children={children} classes="headline" />
 
-export function Caption({ children }: { children: React.ReactNode }) {
-    return <p className="caption">{children}</p>;
-}
 
-export function Subhead({ children }: { children: React.ReactNode }) {
-    return <p className="subhead">{children}</p>;
-}
+export const Caption = (
+    { children }: { children: React.ReactNode }
+) => <GetText children={children} classes="caption" />
 
-export function SubheadMedium({ children }: { children: React.ReactNode }) {
-    return <p className="subheadMedium">{children}</p>;
-}
+export const Subhead = (
+    { children }: { children: React.ReactNode }
+) => <GetText children={children} classes="subhead" />
 
-export function SubheadUppercase({ children }: { children: React.ReactNode }) {
-    return <p className="subheadUppercase">{children}</p>;
-}
+export const SubheadMedium = (
+    { children }: { children: React.ReactNode }
+) => <GetText children={children} classes="subheadMedium" />
+
+export const SubheadUppercase = (
+    { children }: { children: React.ReactNode }
+) => <GetText children={children} classes="subheadUppercase" />

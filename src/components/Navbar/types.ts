@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from "react"
 import { Icons } from "../Icon/types"
 
 type NavbarItemObject = {

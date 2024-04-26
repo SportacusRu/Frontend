@@ -1,8 +1,8 @@
-import React from "react"
+import { ReactNode } from "react"
 
 export type LinkProps = {
     href?: string
     onClick?: () => void
-    children: React.ReactNode
-    icon?: React.ReactNode
+    children: ReactNode
+    icon?: ReactNode
 }

@@ -7,11 +7,11 @@ import { StringToLngLat } from "@/extensions/ymap";
 import Image from "next/image";
 import s from "./PlacesMap.module.css"
 import { useMemo, useState } from "react";
-import { ClipLoader } from "react-spinners";
 
 import { Client } from "@/client";
 import { useFilters } from "@/shared/FiltersProvider";
 import Loader from "../Loader";
+import { useCurrentPlace } from "@/shared/CurrentPlaceProvider";
 
 
 /**
@@ -22,9 +22,10 @@ import Loader from "../Loader";
  * @return {JSX.Element} The Yandex Map component with the list of place markers
  */
 export default function PlacesMap({ 
-  places, currentPlace, setCurrentPlace, setReviews
-}: PlacesMapProps) {
+  places,
+}: PlacesMapProps): JSX.Element {
   const [loading, setLoading] = useState(false)
+  const {currentPlace, currentReviews} = useCurrentPlace()
   const [store, dispatch] = useFilters()
 
   const filteredPlaces = useMemo(() => {
@@ -41,8 +42,8 @@ export default function PlacesMap({
   const handlePlaceClick = async(placeId: number) => {
     setLoading(true)
     if (filteredPlaces) {
-      setCurrentPlace(filteredPlaces.find(place => place && place.place_id === placeId))
-      setReviews(await Client.reviews.getByPlaceId(placeId));
+      currentPlace.set(filteredPlaces.find(place => place && place.place_id === placeId))
+      currentReviews.set(await Client.reviews.getByPlaceId(placeId));
     }
     setLoading(false)
   }
@@ -59,6 +60,6 @@ export default function PlacesMap({
 
   return <div className={s.mapWrapper}>
     <Loader loading={loading}/>
-    <YandexMap PlacesList={placeMarkers} currentPlace={currentPlace} />;
+    <YandexMap PlacesList={placeMarkers} currentPlace={currentPlace.value} />;
   </div>
 }

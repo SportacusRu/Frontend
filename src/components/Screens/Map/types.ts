@@ -1,10 +1,5 @@
-import { Places, Reviews } from "@/client/models/types"
-import { Dispatch, SetStateAction } from "react"
+import { Places } from "@/client/models/types"
 
 export type MapScreenProps = { 
     places: Places[]
-    currentPlace?: Places
-    reviews?: Reviews[]
-    setCurrentPlace: Dispatch<SetStateAction<Places | undefined>>
-    setReviews: Dispatch<SetStateAction<Reviews[] | undefined>>
 }

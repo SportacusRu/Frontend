@@ -7,7 +7,6 @@ import getPlacesList from "@/components/PlacesList";
 import Scrollbar from "@/components/Scrollbar";
 import { MainScreenProps } from "./types";
 import { useEffect, useState } from "react";
-import Loader from "@/components/Loader";
 import { Places } from "@/client/models/types";
 import { Client } from "@/client";
 import { useToastQueue } from "@/shared/ToastQueueProvider";

@@ -1,5 +1,5 @@
 "use client";
-import { ComponentType, ReactElement } from "react";
+import { ReactElement } from "react";
 import { InputProps } from "./types";
 import StringInput from "./StringInput";
 import CodeInput from "./CodeInput";

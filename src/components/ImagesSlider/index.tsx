@@ -1,4 +1,4 @@
-import {Swiper, SwiperSlide} from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import s from "./ImagesSlider.module.css"
 import ImageCounter from "../ImageCounter";
 import { Mousewheel } from "swiper/modules";

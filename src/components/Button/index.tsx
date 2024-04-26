@@ -2,7 +2,7 @@ import { ButtonProps } from "./types";
 import s from "./Button.module.css"
 import classNames from "@/extensions/classNames";
 import { Subhead } from "../Typography";
-import Link from "next/link";
+
 
 const ButtonStyles = [
     s.main, s.primary, s.primaryDark, 

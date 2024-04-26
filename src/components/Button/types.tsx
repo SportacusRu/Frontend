@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react"
+import { ReactNode, MouseEvent } from "react"
 
 export enum ButtonType {
     MainColor, 
@@ -15,5 +15,5 @@ export type ButtonProps = {
     type: ButtonType
     icon?: ReactNode
     children?: ReactNode
-    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
+    onClick?: (e: MouseEvent<HTMLButtonElement>) => void
 }

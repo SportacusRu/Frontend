@@ -1,4 +1,4 @@
-import { Dispatch, InputHTMLAttributes, SetStateAction } from "react"
+import { Dispatch, InputHTMLAttributes } from "react"
 
 export type InputState = {
     value: string,

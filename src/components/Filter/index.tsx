@@ -1,8 +1,7 @@
 "use client";
 import { PLACES_FILTERS } from "@/config/config";
 import Icon from "../Icon";
-import { IconSize, Icons } from "../Icon/types";
-import { Colors } from "../color";
+import { IconSize } from "../Icon/types";
 
 import s from "./Filter.module.css";
 import { FilterProps } from "./types";

@@ -9,7 +9,7 @@ import { FormEvent } from "react";
 
 import s from "./verifyCode.module.scss"
 import Link from "next/link";
-import useScreen, { PAGES } from "@/hooks/useScreen";
+import useScreen from "@/hooks/useScreen";
 
 export default function({authKey, email, password} : VerifyCodeProps) {
     const toastQueue = useToastQueue()

@@ -25,7 +25,6 @@ export default function(props : PlaceProps) {
     const toastQueue = useToastQueue();
     const [likeColor, setLikeColor] = useState(Colors.greyDark);
     const [dislikeColor, setDislikeColor] = useState(Colors.greyDark);
-    const [liked, setLiked] = useState(props.liked);
 
     const onLike = async () => {
         const res = await Client.places.like(props.place_id);
@@ -45,33 +44,37 @@ export default function(props : PlaceProps) {
         }
     }
     return (
-        <div className={s.place} onClick={props.onClick}> 
-            <div className={s.placeImage}>
-                <Image width={382} height={220} src={props.src} loading="lazy" alt={props.title}/>
-                {props.recommended ? <Headline>
-                    рекомендуем
-                </Headline> : <></>}
-            </div>
-            <div className={s.placeContent}>
-                <div className={s.placeInfo}>
-                    <Subhead>
-                        {props.title}
-                    </Subhead>
-                    <Stars rating={props.rating}/>
-                </div>
-                <div className={s.placeButtonList}>
-                    <Button 
-                        type={ButtonType.Icon} 
-                        onClick={onLike}
-                        icon={<Icon type={Icons.like} color={likeColor}/>}
-                    ></Button>
-                    <Button 
-                        type={ButtonType.Icon} 
-                        onClick={onDislike}
-                        icon={<Icon type={Icons.unlike} color={dislikeColor}/>}
-                    ></Button>
-                </div>  
-            </div>
+      <div className={s.place} onClick={props.onClick}>
+        <div className={s.placeImage}>
+          <Image
+            width={382}
+            height={220}
+            src={props.src}
+            loading="lazy"
+            alt={props.title}
+          />
+          {props.recommended ? <Headline>
+            рекомендуем
+          </Headline> : <></>}
         </div>
-    )
+        <div className={s.placeContent}>
+          <div className={s.placeInfo}>
+            <Subhead>{props.title}</Subhead>
+            <Stars rating={props.rating} />
+          </div>
+          <div className={s.placeButtonList}>
+            <Button
+              type={ButtonType.Icon}
+              onClick={onLike}
+              icon={<Icon type={Icons.like} color={likeColor} />}
+            ></Button>
+            <Button
+              type={ButtonType.Icon}
+              onClick={onDislike}
+              icon={<Icon type={Icons.unlike} color={dislikeColor} />}
+            ></Button>
+          </div>
+        </div>
+      </div>
+    );
 }

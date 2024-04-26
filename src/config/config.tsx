@@ -1,4 +1,9 @@
 import { Icons } from "@/components/Icon/types";
+import MainScreen from "@/components/Screens/Main";
+import { MainScreenProps } from "@/components/Screens/Main/types";
+import MapScreen from "@/components/Screens/Map";
+import { MapScreenProps } from "@/components/Screens/Map/types";
+import UserScreen from "@/components/Screens/User";
 
 const CODE_LENGTH = 4 as const;
 
@@ -23,19 +28,23 @@ const COOKIE_DATA = {
 const NAVBAR_PAGES = [
     {
         title: "Гланая",
-        icon: Icons.home
+        icon: Icons.home,
+        component: (props : MainScreenProps) => <MainScreen {...props} />
     },
     {
         title: "Карта",
-        icon: Icons.radar
+        icon: Icons.radar, 
+        component: (props : MapScreenProps) => <MapScreen {...props} />
     },
     {
         title: "Профиль",
-        icon: Icons.profile
+        icon: Icons.profile, 
+        component: (props : {}) => <UserScreen {...props}/>
     },
 ] as const;
 
+
 export { 
     CODE_LENGTH, PLACES_FILTERS, PLACE_CATEGORIES, 
-    COOKIE_DATA, NAVBAR_PAGES 
-};
+    COOKIE_DATA, NAVBAR_PAGES
+}

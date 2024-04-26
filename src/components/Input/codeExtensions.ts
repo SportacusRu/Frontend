@@ -1,9 +1,8 @@
 import { Dispatch } from "react";
 import { InputState, InputStateActions } from "./types";
-import { CODE_LENGTH } from "@/config/config";
 import { KeyboardEvent } from "react";
 
-const range = Array.from({ length: CODE_LENGTH }, (_, index) => index);
+const range = Array.from({ length: 4 }, (_, index) => index);
 
 
 function onKeyDown(
@@ -15,7 +14,7 @@ function onKeyDown(
   if (event.key === "Backspace") {
     if (event.currentTarget.value == "") {
       dispatch({ type: "REMOVE", payload: id });
-      moveFocus(containerRef, id - 1);
+      if (id > 0) moveFocus(containerRef, id - 1);
     } else {
       dispatch({ type: "REMOVE", payload: id + 1 });
     }
@@ -36,8 +35,10 @@ function onChange(
     if (state.value.length < range.length) {
         dispatch({ type: "ADD", payload: text })
         moveFocus(containerRef, id+1);
-    } else {
-        dispatch({ type: "VALIDATE", payload: true })
+
+        if ((state.value.length+1) == range.length) {
+          dispatch({ type: "VALIDATE", payload: true })
+        }
     }
 }
 

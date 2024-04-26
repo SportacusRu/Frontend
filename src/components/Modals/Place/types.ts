@@ -6,5 +6,4 @@ export type PlaceScreenProps = {
     reviews: Reviews[],
     setCurrentPlace: Dispatch<SetStateAction<Places | undefined>>
     setReviews: Dispatch<SetStateAction<Reviews[] | undefined>>
-    setScreen: Dispatch<SetStateAction<number>>
 }

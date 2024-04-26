@@ -1,17 +1,20 @@
 import { AxiosResponse } from "axios";
-import { ErrorType, LoginPost } from "../models/types";
+import { AuthKey, ErrorType, LoginPost } from "../models/types";
 import baseRouter from "./base";
 
 
 class AuthRouter extends baseRouter {
     protected __BASE_URL = "/auth"; 
 
-    async register(name: string, email: string, password: string): Promise<ErrorType> {
-        return await this.post("register", {
-            name: name,
-            password: password,
-            email: email,
-        }) 
+    async register(name: string, email: string, password: string): Promise<AuthKey> {
+        const res = await this.client.post(`${this.__BASE_URL}/register`, null, {
+            params: {
+                name: name,
+                password: password,
+                email: email,
+            }
+        })
+        return res.data;
     }
 
     async login(email: string, password: string): Promise<void> {
@@ -24,14 +27,18 @@ class AuthRouter extends baseRouter {
         var time = now.getTime();
         var expireTime = time + 172800000;
         now.setTime(expireTime);
-        document.cookie = `access_token=${data.data.access_token};expires=${now.toUTCString()};path=/;SameSite=Lax`
+        const token = `access_token=${data.data.access_token};expires=${now.toUTCString()};path=/;SameSite=Lax`
+        document.cookie = token
         
     }
 
-    async validateCodeConfirm(code: string, email: string): Promise<ErrorType> {
+    async validateCodeConfirm(
+        code: string, email: string, auth_key: AuthKey
+    ): Promise<ErrorType> {
         return await this.post("validateCodeConfirm", {
             code: code, 
-            email: email
+            email: email,
+            auth_key: auth_key
         })
     }
 

@@ -1,14 +1,15 @@
-import { AvatarProps } from "./types";
+import { AvatarProps, AvatarSizes, AvatarSizesList } from "./types";
 import Image from "next/image";
 import s from "./Avatar.module.css"
 
 
-export default function({userPhoto} : AvatarProps) {
+export default function({userPhoto, size} : AvatarProps) {
+    const sizes = size ? AvatarSizesList[size] : AvatarSizesList[0];
     return <>
     {
         userPhoto ? 
             <img src={userPhoto} className={s.avatar} alt="Avatar"/> 
-            : <Image src="/user.svg" width={36} height={36} alt="Avatar" />
+            : <Image src="/user.svg" width={sizes} height={sizes} alt="Avatar" />
     }
     </>
 }

@@ -40,3 +40,5 @@ export type User = {
     reviews_list: Reviews[]
     photo: string
 }
+
+export type AuthKey = string

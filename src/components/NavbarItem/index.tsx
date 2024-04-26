@@ -5,9 +5,12 @@ import { Colors } from "../color";
 import { Caption } from "../Typography";
 import classNames from "@/extensions/classNames";
 
-export default function({ iconType, active, onClick, children }: NavbarItemProps) {
+export default function({ iconType, active, onClick, children, visible }: NavbarItemProps) {
     const classes = classNames(s.navbarItem, active ? s.active : "");
-    return <div onClick={onClick} className={classes}>
+    return <div 
+        onClick={onClick} className={classes} 
+        style={visible ? {display: "none"} : {}}
+    >
         <Icon type={iconType} color={active ? Colors.accent : Colors.greyDark}/>
         <Caption>{children}</Caption>
     </div>

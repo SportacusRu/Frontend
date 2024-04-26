@@ -6,7 +6,7 @@ import FiltersModal from "@/components/Modals/Filters";
 
 
 export default function MapScreen({
-    places, currentPlace, setCurrentPlace, setReviews, reviews, setScreen
+    places, currentPlace, setCurrentPlace, setReviews, reviews
 } : MapScreenProps) {
     const { width } = useWidth()
     return <>
@@ -21,7 +21,6 @@ export default function MapScreen({
             currentPlace={currentPlace} 
             setCurrentPlace={setCurrentPlace} 
             setReviews={setReviews}
-            setScreen={setScreen}
-        /> : <FiltersModal setScreen={setScreen}/>}
+        /> : <FiltersModal />}
     </>
 }

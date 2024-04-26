@@ -17,10 +17,8 @@ import { useState } from "react";
 const handleError = (error: boolean, toastQueue: ToastQueue) => {
     if (error) {
         toastQueue.add("Ошибка авторизации! Перезагрузите страницу");
-        return error;
-    } else {
-        return error;
     }
+    return error;
 }
 
 export default function(props : PlaceProps) {
@@ -32,13 +30,19 @@ export default function(props : PlaceProps) {
     const onLike = async () => {
         const res = await Client.places.like(props.place_id);
         const error = handleError(res.error, toastQueue);
-        if (!error) 
+        if (!error) {
             setLikeColor(Colors.accent);
+            setDislikeColor(Colors.greyDark)
+        }
+        
     }
     const onDislike = async () => {
         const res = await Client.places.dislike(props.place_id);
         const error = handleError(res.error, toastQueue);
-        if (!error) return
+        if (!error) {
+            setDislikeColor(Colors.accent)
+            setLikeColor(Colors.greyDark)
+        }
     }
     return (
         <div className={s.place} onClick={props.onClick}> 

@@ -34,14 +34,18 @@ export class Client {
         return new UserRouter(this.client)
     }
 
-    static get authorized(): boolean {
+    static get authorized(): boolean { 
         if (typeof window !== 'undefined') {
-            const token = document.cookie.split(";").find(s => s.startsWith("access_token="))?.substring(13);
-            if (token !== undefined) {
+            const tokenString = document.cookie.replaceAll(" ", "").split(";").find(
+                s => s.split("=")[0] == "access_token"
+            )
+            const token = tokenString?.split("=")[1]
+            if (token !== undefined && this.client.defaults.headers.common['Authorization'] === undefined) {
                 this.client.defaults.headers.common['Authorization'] = `Bearer ${token}`;
             }
-            return this.client.defaults.headers.common['Authorization'] !== undefined && token !== undefined;
+            return this.client.defaults.headers.common['Authorization'] !== undefined 
+                   && token !== undefined;
         } 
-        return false;
+        return false
     } 
 }

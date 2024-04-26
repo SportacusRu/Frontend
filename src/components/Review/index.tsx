@@ -14,12 +14,13 @@ export default function(props : ReviewProps) {
             <div className={s.reviewHeaderContent}>
                 <Avatar userPhoto={props.userPhoto} />
                 <div>
-                    <Subhead>{props.userName}</Subhead>
+                    <Subhead>{props.viewUserPage ? "Вы" : props.userName }</Subhead>
                     <Caption>{props.time}</Caption>
                 </div>
             </div>
             <Menu>
                 {props.viewUserPage ? 
+                <>
                     <MenuItem 
                         icon={Icons.arrowCircle} 
                         color={Colors.white}
@@ -27,15 +28,23 @@ export default function(props : ReviewProps) {
                     >
                         Перейти к месту
                     </MenuItem> 
-                    : <></>
+                    <MenuItem 
+                        icon={Icons.trash} 
+                        color={Colors.danger}
+                        onClick={props.viewPageHandler}
+                    >
+                    Удалить
+                </MenuItem> 
+                </> : <></>
                 }
-                <MenuItem 
+                {!props.viewUserPage ? <MenuItem 
                     icon={Icons.complaints} 
                     color={Colors.danger} 
                     onClick={props.complaintHandler}
                 >
                     Пожаловаться
-                </MenuItem>
+                </MenuItem> : <></>}
+            
             </Menu>
         </div>
         <div className={s.reviewRating}>

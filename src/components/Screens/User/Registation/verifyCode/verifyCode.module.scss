@@ -1,0 +1,39 @@
+.verifyCode { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 64px;
+
+    width: 100%;
+    height: 100%;
+    
+    box-sizing: border-box;
+    padding: 0 24px;
+
+    h1 {
+        text-align: center;
+    }
+
+    &Controllers, &Buttons {
+        width: 100%;
+        text-align: center;
+
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        > p {
+            color: var(--color-grey);
+
+            > a {
+                display: block;
+                color: var(--color-accent);
+            }
+        }
+    }
+    
+    &Controllers {
+        gap: 24px;
+    }
+}

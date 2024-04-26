@@ -20,19 +20,21 @@ import Icon from "@/components/Icon";
 import Modal from "..";
 import { useUserPosition } from "@/shared/UserPositionProvider";
 import Scrollbar from "@/components/Scrollbar";
+import useScreen, { PAGES } from "@/hooks/useScreen";
 
 
 export default function PlaceModal({
-    currentPlace, reviews, setCurrentPlace, setReviews, setScreen
+    currentPlace, reviews, setCurrentPlace, setReviews
 } : PlaceScreenProps) {
     const [reviewsPhotos, setReviewsPhotos] = useState<string[]>([]);
     const { position } = useUserPosition()
+    const [screen, setScreen] = useScreen()
     useEffect(() => setReviewsPhotos(reviews.flatMap(r => r.photos)), [reviews])
 
     const handleCancel = () => {
         setCurrentPlace(undefined)
         setReviews(undefined)
-        setScreen(1)
+        setScreen(PAGES.Map)
     }
     const handleCreateMap = () => {
         const currentPosition = [0, 0] as LngLat;

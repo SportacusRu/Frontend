@@ -6,7 +6,6 @@ import { useFilters } from "@/shared/FiltersProvider";
 
 import s from "./filters.module.css"
 import FiltersSlider from "@/components/filtersSlider";
-import Modal from "..";
 
 import { TouchEvent, useState } from "react";
 import useSize from "@/hooks/useSize";
@@ -14,15 +13,17 @@ import useSize from "@/hooks/useSize";
 import Link from "@/components/Link";
 import { Colors } from "@/components/color";
 import Icon from "@/components/Icon";
-import { FiltersModalState } from "./types";
+
 import { Client } from "@/client";
 import Image from "next/image";
+import useScreen, { PAGES } from "@/hooks/useScreen";
 
 
-export default function FiltersModal({ setScreen } : FiltersModalState) {
+export default function FiltersModal() {
     const { height, width } = useSize()
     const [store, dispatch] = useFilters();
     const authorized = Client.authorized
+    const [screen, setScreen] = useScreen()
     const [containerHeight, setContainerHeight] = useState(120)
     const [draggable, setDraggable] = useState(false)
     
@@ -40,7 +41,7 @@ export default function FiltersModal({ setScreen } : FiltersModalState) {
         if (containerHeight < 240) setContainerHeight(120)
     }
 
-    const onHandleCancel = () => setScreen(0)
+    const onHandleCancel = () => setScreen(PAGES.Main)
 
     const onDragHandler = (e: TouchEvent<HTMLDivElement>) => {
         const positionY = e.changedTouches[0].clientY;

@@ -13,7 +13,7 @@ class PlacesRouter extends baseRouter {
         return response.data;
     }
 
-    async getById(place_id: number) : Promise<Places> {
+    async getById(place_id: number) : Promise<Places | undefined> {
         const response: AxiosResponse<Places> = await this.__client.get(
             this.__BASE_URL + "/getById", {
             params: {

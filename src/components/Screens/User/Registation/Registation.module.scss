@@ -1,0 +1,48 @@
+.registration {
+    &Form {
+        height: 100%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        gap: 64px;
+
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 24px;
+    }
+
+    &Title {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+        text-align: center;
+
+        > p {
+            color: var(--color-grey)
+        }
+    }
+
+    &Controllers, &Buttons, &Inputs { 
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    &Buttons {
+        gap: 12px;
+        text-align: center;
+        align-items: center;
+        > p {
+            color: var(--color-grey-dark)
+        }
+    }
+
+    &Controllers {
+        gap: 48px;
+    }
+}

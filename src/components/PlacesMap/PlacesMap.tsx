@@ -6,13 +6,13 @@ import { YMapMarker } from "ymap3-components";
 import { StringToLngLat } from "@/extensions/ymap";
 import Image from "next/image";
 import s from "./PlacesMap.module.css"
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { ClipLoader } from "react-spinners";
-import { Colors, colorsList } from "../color";
+
 import { Client } from "@/client";
+import { useFilters } from "@/shared/FiltersProvider";
+import Loader from "../Loader";
 
-
-const accentColor = colorsList[Colors.accent];
 
 /**
  * Renders a map of places with markers.
@@ -25,16 +25,30 @@ export default function PlacesMap({
   places, currentPlace, setCurrentPlace, setReviews
 }: PlacesMapProps) {
   const [loading, setLoading] = useState(false)
+  const [store, dispatch] = useFilters()
+
+  const filteredPlaces = useMemo(() => {
+    if (store.category != "" || store.filters.length > 0) {
+      return places.map(p => {
+        const filterCheck = p.filters_list.some(f => store.filters.includes(f));
+        const categoryCheck = store.category == p.category;
+        if (filterCheck || categoryCheck) return p;
+      }).filter(p => p !== undefined)
+    }
+    return places
+  }, [store.category, store.filters, places])
   
   const handlePlaceClick = async(placeId: number) => {
     setLoading(true)
-    setCurrentPlace(places.find(place => place.place_id === placeId))
-    setReviews(await Client.reviews.getByPlaceId(placeId));
+    if (filteredPlaces) {
+      setCurrentPlace(filteredPlaces.find(place => place && place.place_id === placeId))
+      setReviews(await Client.reviews.getByPlaceId(placeId));
+    }
     setLoading(false)
   }
 
-  const placeMarkers = places.map(place => (
-    <YMapMarker
+  const placeMarkers = filteredPlaces.map(place => (
+    place &&<YMapMarker
       key={place.place_id}
       coordinates={StringToLngLat(place.geo)}
       onClick={() => handlePlaceClick(place.place_id)}
@@ -44,11 +58,7 @@ export default function PlacesMap({
   ));
 
   return <div className={s.mapWrapper}>
-    {
-      loading ? <div className={s.loader}>
-        <ClipLoader loading={loading} color={accentColor}/>
-      </div> : <></>
-    }
+    <Loader loading={loading}/>
     <YandexMap PlacesList={placeMarkers} currentPlace={currentPlace} />;
   </div>
 }

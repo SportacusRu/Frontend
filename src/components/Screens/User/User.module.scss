@@ -26,6 +26,12 @@
             flex-direction: column;
             gap: 2px;
 
+            h1 {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
             p {
                 color: var(--color-grey-dark)
             }

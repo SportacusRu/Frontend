@@ -25,14 +25,11 @@ export default function UserScreen() {
     useEffect(() => {
         if (Client.authorized) {
             Client.user.get()
-            .then((u) => {
-                setUser(u)
-                console.log(u)
-        })
+            .then((u) => setUser(u))
             .catch(() => toastQueue.add("Ошибка соединения! Обновите страницу"))
             .finally(() => setLoading(false))
         }
-    }, [Client.authorized])
+    }, [])
 
     return <>
         {Client.authorized ? <Scrollbar className="">

@@ -23,9 +23,9 @@ class AuthRouter extends baseRouter {
             password: password,
             grant_type: "password", 
         })
-        var now = new Date();
-        var time = now.getTime();
-        var expireTime = time + 172800000;
+        const now = new Date();
+        const time = now.getTime();
+        const expireTime = time + 172800000;
         now.setTime(expireTime);
         const token = `access_token=${data.data.access_token};expires=${now.toUTCString()};path=/;SameSite=Lax`
         document.cookie = token

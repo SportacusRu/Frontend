@@ -1,6 +1,8 @@
 import { AxiosResponse } from "axios";
 import { AuthKey, ErrorType, LoginPost } from "../models/types";
 import baseRouter from "./base";
+import { EXPIRE_ADD_DAYS } from "@/config/config";
+import addDays from "@/extensions/addDays";
 
 
 class AuthRouter extends baseRouter {
@@ -23,10 +25,7 @@ class AuthRouter extends baseRouter {
             password: password,
             grant_type: "password", 
         })
-        const now = new Date();
-        const time = now.getTime();
-        const expireTime = time + 172800000;
-        now.setTime(expireTime);
+        const now = addDays(new Date(), EXPIRE_ADD_DAYS)
         const token = `access_token=${data.data.access_token};expires=${now.toUTCString()};path=/;SameSite=Lax`
         document.cookie = token
         

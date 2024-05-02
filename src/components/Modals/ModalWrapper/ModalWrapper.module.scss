@@ -1,0 +1,32 @@
+.ModalWrapper {
+    position: absolute;
+    bottom: 0;
+
+    width: 100%;
+
+    height: auto;
+    max-height: calc(100dvh - 120px);
+
+    background-color: var(--color-body);
+    
+    border-top-left-radius: var(--border-radius-xs);
+    border-top-right-radius: var(--border-radius-xs);
+
+    box-sizing: border-box;
+    padding-top: 24px;
+    padding-bottom: 24px;
+
+    > a {
+        padding-left: 24px;
+    }
+
+    &Scrollbar {
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+        height: 100%;
+        width: 100%;
+
+        gap: 48px;
+    }
+}

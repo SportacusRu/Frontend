@@ -13,13 +13,14 @@ import Icon from "../Icon";
 import useScreen, { PAGES } from "@/hooks/useScreen";
 import { NAVBAR_PAGES } from "@/config/config";
 import { useCurrentPlace } from "@/shared/CurrentPlaceProvider";
+import Loader from "../Loader";
 
 
 export default function(props : ViewProps) {
     const { width } = useWidth();
 
     const [screen, setScreen] = useScreen();
-    const { currentPlace, currentReviews }= useCurrentPlace();
+    const { currentPlace, currentReviews } = useCurrentPlace();
 
     useEffect(() => {
         if (currentPlace.value) {
@@ -28,22 +29,17 @@ export default function(props : ViewProps) {
     }, [currentPlace.value, currentReviews.value])
 
     useEffect(() => {
-        if (screen != PAGES.Map) {
+        if (screen != PAGES.Map) 
             currentPlace.set(undefined);
-        }
     }, [screen])
 
     useEffect(() => {
         if (props.currentPlace && props.reviews) {
             currentPlace.set(props.currentPlace);
-            currentReviews.set(props.reviews)
         }
     }, [props.currentPlace, props.reviews])
 
-    const handleFilters = () => {
-        setScreen(PAGES.Map);
-    }
-
+    const handleFilters = () => setScreen(PAGES.Map);
     return <>
         <Screens screen={screen}>
             {
@@ -81,5 +77,6 @@ export default function(props : ViewProps) {
                 </div>
             : <></>
         }
+        <Loader loading={currentReviews.loading}/>
     </>
 }

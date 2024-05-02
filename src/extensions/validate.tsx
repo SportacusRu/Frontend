@@ -30,3 +30,7 @@ function validateInputString(value: string, type: string) {
 
 export default validateInputString;
 
+export {
+    validateText
+}
+

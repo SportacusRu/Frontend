@@ -14,10 +14,10 @@ class UserRouter extends baseRouter {
     }
 
     async updatePhoto(photo: string) : Promise<ErrorType> {
-        return await this.post(
-            "updatePhoto", {
-                photo: photo
-            }
+        const formData = new FormData();
+        formData.append('photo', photo);
+        return await this.__client.post(
+            this.__BASE_URL + "/updatePhoto", formData
         )
     }
 

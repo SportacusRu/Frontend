@@ -13,7 +13,7 @@ export default function({onUpload}: ImageUploaderProps) {
     }
     return (
         <div className="imageUploaderWrapper">
-            <input type="file" accept="image/png, image/jpeg" id={inputId}onChange={uploadHandler} />
+            <input type="file" accept="image/png, image/jpeg" id={inputId} onChange={uploadHandler} />
             <label htmlFor={inputId} className="imageUploader">
                 <div>
                     <Icon type={Icons.add} color={Colors.greyLight}/>

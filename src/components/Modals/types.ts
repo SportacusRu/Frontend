@@ -1,0 +1,3 @@
+type UpdateProps = {
+    onCancelHandler: () => void
+}

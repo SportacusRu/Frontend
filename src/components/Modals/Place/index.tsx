@@ -21,13 +21,25 @@ import useScreen, { PAGES } from "@/hooks/useScreen";
 import { useCurrentPlace } from "@/shared/CurrentPlaceProvider";
 import Loader from "@/components/Loader";
 import getReviewsList from "@/components/ReviewsList";
+import useUserData from "@/hooks/useUserData";
+import { dislikeHandler, likeHandler } from "@/client/controllers/likedControllers";
+import { useToastQueue } from "@/shared/ToastQueueProvider";
 
 
 export default function PlaceModal() {
-    const [reviewsPhotos, setReviewsPhotos] = useState<string[]>([]);
     const { position } = useUserPosition()
-    const { currentPlace, currentReviews }= useCurrentPlace()
+    const toastQueue = useToastQueue()
+    const { currentPlace, currentReviews } = useCurrentPlace()
     const [_, setScreen] = useScreen()
+    const { likedList } = useUserData()
+    const [reviewsPhotos, setReviewsPhotos] = useState<string[]>([]);
+    const [likeColor, setLikeColor] = useState<Colors>(
+      currentPlace.value && likedList.has(currentPlace.value.place_id) 
+        ? Colors.accent 
+        : Colors.greyDark
+      )
+    const [dislikeColor, setDislikeColor] = useState<Colors>(Colors.greyDark)
+
     useEffect(() => {
       if (currentReviews.value)
         setReviewsPhotos(currentReviews.value.flatMap(r => r.photos));
@@ -35,7 +47,6 @@ export default function PlaceModal() {
 
     const handleCancel = () => {
         currentPlace.set(undefined)
-        currentReviews.set(undefined)
         setScreen(PAGES.Map)
     }
     const handleCreateMap = () => {
@@ -45,6 +56,7 @@ export default function PlaceModal() {
                 "_blank"
             );
     }
+
     return (
       <Modal background={false}>
         {currentPlace.value && currentReviews.value ? (
@@ -60,19 +72,17 @@ export default function PlaceModal() {
                       }
                       onClick={handleCancel}
                     />
-                    <Button type={ButtonType.Circle}>
-                      <Menu color={Colors.white}>
-                        <MenuItem icon={Icons.share} color={Colors.white}>
-                          Поделиться
-                        </MenuItem>
-                        <MenuItem icon={Icons.edit} color={Colors.white}>
-                          Оставить отзыв
-                        </MenuItem>
-                        <MenuItem icon={Icons.complaints} color={Colors.danger}>
-                          Пожаловаться
-                        </MenuItem>
-                      </Menu>
-                    </Button>
+                    <Menu color={Colors.white} circle={true}>
+                      <MenuItem icon={Icons.share} color={Colors.white}>
+                        Поделиться
+                      </MenuItem>
+                      <MenuItem icon={Icons.edit} color={Colors.white}>
+                        Оставить отзыв
+                      </MenuItem>
+                      <MenuItem icon={Icons.complaints} color={Colors.danger}>
+                        Пожаловаться
+                      </MenuItem>
+                    </Menu>
                   </header>
                   <ImagesSlider images={reviewsPhotos} />
                 </div>
@@ -87,18 +97,22 @@ export default function PlaceModal() {
                   <div className={s.placeScreenInfo}>
                     <Stars rating={currentPlace.value.rating} />
                     <div className={s.placeScreenButtons}>
-                      <Button
-                        type={ButtonType.Icon}
-                        icon={
-                          <Icon type={Icons.like} color={Colors.greyDark} />
-                        }
-                      />
-                      <Button
-                        type={ButtonType.Icon}
-                        icon={
-                          <Icon type={Icons.unlike} color={Colors.greyDark} />
-                        }
-                      />
+                    <Button
+                      type={ButtonType.Icon}
+                      onClick={() => likeHandler(
+                        toastQueue, likedList, currentPlace.value.place_id,
+                        setLikeColor, setDislikeColor
+                      )}
+                      icon={<Icon type={Icons.like} color={likeColor} />}
+                    />
+                    <Button
+                      type={ButtonType.Icon}
+                      onClick={() => dislikeHandler(
+                        toastQueue, likedList, currentPlace.value.place_id,
+                        setLikeColor, setDislikeColor
+                      )}
+                      icon={<Icon type={Icons.unlike} color={dislikeColor} />}
+                    />
                     </div>
                   </div>
                 </div>

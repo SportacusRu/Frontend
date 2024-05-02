@@ -7,10 +7,11 @@ import Icon from "../Icon";
 import { Icons } from "../Icon/types";
 import { Colors } from "../color";
 import { ReactNode } from "react";
+import classNames from "@/extensions/classNames";
 
 
-export default function({children, color}: {children: ReactNode, color?: Colors}) {
-    const menuButton = <MenuButton className={s.menuButton}>
+export default function({children, color, circle}: {children: ReactNode, color?: Colors, circle?: boolean}) {
+    const menuButton = <MenuButton className={classNames(s.menuButton, circle ? s.Circle : "")}>
         <Icon type={Icons.more} color={color ? color : Colors.greyDark}/>
     </MenuButton>
     return (

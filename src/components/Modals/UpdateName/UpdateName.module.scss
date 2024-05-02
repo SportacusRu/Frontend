@@ -1,0 +1,31 @@
+.UpdateName {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 0 24px;
+    padding-top: 24px;
+    gap: 48px;
+
+    > h1 {
+        width: 315px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    &Input {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+
+        width: 100%;
+
+        > p {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 0 16px;
+            color: var(--color-grey-dark)
+        }
+    }
+}

@@ -10,21 +10,23 @@ import { useEffect, useState } from "react";
 import { Places } from "@/client/models/types";
 import { Client } from "@/client";
 import { useToastQueue } from "@/shared/ToastQueueProvider";
+import UserLikeList from "@/components/UserLikeList";
+import useUserData from "@/hooks/useUserData";
+import getRecommendedPlace from "@/client/controllers/getRecommendedPlace";
 
 
 export default function MainScreen({ places } : MainScreenProps) {
     const toastQueue = useToastQueue()
     const [recommendedPlace, setRecommendedPlace] = useState<Places>()
+    const { userData, loading } = useUserData()
+ 
+    useEffect(() => {  
+        getRecommendedPlace(toastQueue, setRecommendedPlace)  
+    }, [Client.authorized, recommendedPlace])
 
-    useEffect(() => {
-        if (Client.authorized) {
-            Client.places.getRecommended()
-            .then(p => p && setRecommendedPlace(p))
-            .catch(() => toastQueue.add(
-                "Ошибка авторизации! Попробуйте перезагрузить страницу."
-            ))
-        }
-    }, [places, Client.authorized])
+    const handleDislikeRecommended = () => {
+        getRecommendedPlace(toastQueue, setRecommendedPlace)  
+    }
     return (
         <Scrollbar className={s.main}>
             <Image 
@@ -34,28 +36,19 @@ export default function MainScreen({ places } : MainScreenProps) {
             <div className={s.mainContent}>
                 {recommendedPlace && <div className={s.mainRecommended}>
                     <Place 
-                        place_id={recommendedPlace.place_id} 
-                        src={recommendedPlace.preview} 
-                        title={recommendedPlace.title} 
-                        rating={recommendedPlace.rating} 
-                        liked={false} 
-                        recommended={true}                        
+                        place={recommendedPlace}
+                        recommended={true}      
+                        handleDislike={handleDislikeRecommended}                  
                     /> 
                 </div>}
                 <Slider 
-                    slides={getPlacesList(places)} 
+                    slides={getPlacesList(places, true)} 
                     data={{
                         title: "Новые места",
                         description: "Посетите новые места"
                     }} 
                 />
-                <Slider 
-                    slides={getPlacesList(places)} 
-                    data={{
-                        title: "Новые места",
-                        description: "Посетите новые места"
-                    }} 
-                />
+                <UserLikeList user={userData} loading={loading} />
             </div>
         </Scrollbar>
     )

@@ -1,0 +1,41 @@
+.AvatarUpdate {
+    display: block;
+
+    width: 128px;
+    height: 128px;
+
+    &Wrapper {
+        display: block;
+
+        width: 128px;
+        height: 128px;
+
+        margin: 0 auto;
+    }
+
+    > div {
+        cursor: pointer;
+        position: relative;
+        > div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            position: absolute;
+            top: 0;
+            left: 0;
+            
+            width: 128px;
+            height: 128px;
+
+            background: var(--color-blackout);
+
+            > p {
+                text-align: center;
+                
+                color: var(--color-grey-light);
+            }
+        }
+        
+    }
+}

@@ -1,9 +1,7 @@
+import { Places } from "@/client/models/types"
+
 export type PlaceProps = {
-    onClick?: () => void,
-    place_id: number,
-    src: string,
-    title: string,
-    rating: number,
-    liked: boolean,
-    recommended: boolean
+    handleDislike?: () => void
+    recommended?: boolean
+    place: Places
 }

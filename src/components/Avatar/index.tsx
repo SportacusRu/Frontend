@@ -8,7 +8,10 @@ export default function({userPhoto, size} : AvatarProps) {
     return <>
     {
         userPhoto ? 
-            <img src={userPhoto} className={s.avatar} alt="Avatar"/> 
+            <img 
+                src={userPhoto} style={{width: sizes, height: sizes}} 
+                className={s.avatar} alt="Avatar"
+            /> 
             : <Image src="/user.svg" width={sizes} height={sizes} alt="Avatar" />
     }
     </>

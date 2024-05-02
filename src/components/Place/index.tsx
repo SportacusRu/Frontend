@@ -13,45 +13,32 @@ import { Client } from "@/client";
 import { useToastQueue } from "@/shared/ToastQueueProvider";
 import { ToastQueue } from "@/extensions/ToastQueue";
 import { useState } from "react";
+import { useCurrentPlace } from "@/shared/CurrentPlaceProvider";
+import useUserData from "@/hooks/useUserData";
+import { dislikeHandler, likeHandler } from "@/client/controllers/likedControllers";
 
-const handleError = (error: boolean, toastQueue: ToastQueue) => {
-    if (error) {
-        toastQueue.add("Ошибка авторизации! Перезагрузите страницу");
-    }
-    return error;
-}
 
 export default function(props : PlaceProps) {
     const toastQueue = useToastQueue();
-    const [likeColor, setLikeColor] = useState(Colors.greyDark);
+    const { likedList } = useUserData()
+    const liked = likedList.has(props.place.place_id)
+    const [likeColor, setLikeColor] = useState(
+      liked ? Colors.accent : Colors.greyDark
+    );
     const [dislikeColor, setDislikeColor] = useState(Colors.greyDark);
+    const { currentPlace } = useCurrentPlace()
 
-    const onLike = async () => {
-        const res = await Client.places.like(props.place_id);
-        const error = handleError(res.error, toastQueue);
-        if (!error) {
-            setLikeColor(Colors.accent);
-            setDislikeColor(Colors.greyDark)
-        }
-        
-    }
-    const onDislike = async () => {
-        const res = await Client.places.dislike(props.place_id);
-        const error = handleError(res.error, toastQueue);
-        if (!error) {
-            setDislikeColor(Colors.accent)
-            setLikeColor(Colors.greyDark)
-        }
-    }
+    const handleClick = async () => currentPlace.set(props.place)
+
     return (
-      <div className={s.place} onClick={props.onClick}>
-        <div className={s.placeImage}>
+      <div className={s.place}>
+        <div className={s.placeImage} onClick={handleClick}>
           <Image
             width={382}
             height={220}
-            src={props.src}
+            src={props.place.preview}
             loading="lazy"
-            alt={props.title}
+            alt={props.place.title}
           />
           {props.recommended ? <Headline>
             рекомендуем
@@ -59,18 +46,24 @@ export default function(props : PlaceProps) {
         </div>
         <div className={s.placeContent}>
           <div className={s.placeInfo}>
-            <Subhead>{props.title}</Subhead>
-            <Stars rating={props.rating} />
+            <Subhead>{props.place.title}</Subhead>
+            <Stars rating={props.place.rating} />
           </div>
           <div className={s.placeButtonList}>
             <Button
               type={ButtonType.Icon}
-              onClick={onLike}
+              onClick={() => likeHandler(
+                toastQueue, likedList, props.place.place_id,
+                setLikeColor, setDislikeColor
+              )}
               icon={<Icon type={Icons.like} color={likeColor} />}
             ></Button>
             <Button
               type={ButtonType.Icon}
-              onClick={onDislike}
+              onClick={() => dislikeHandler(
+                toastQueue, likedList, props.place.place_id,
+                setLikeColor, setDislikeColor
+              )}
               icon={<Icon type={Icons.unlike} color={dislikeColor} />}
             ></Button>
           </div>

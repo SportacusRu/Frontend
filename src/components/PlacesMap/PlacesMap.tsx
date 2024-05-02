@@ -6,11 +6,9 @@ import { YMapMarker } from "ymap3-components";
 import { StringToLngLat } from "@/extensions/ymap";
 import Image from "next/image";
 import s from "./PlacesMap.module.css"
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 
-import { Client } from "@/client";
 import { useFilters } from "@/shared/FiltersProvider";
-import Loader from "../Loader";
 import { useCurrentPlace } from "@/shared/CurrentPlaceProvider";
 
 
@@ -24,9 +22,8 @@ import { useCurrentPlace } from "@/shared/CurrentPlaceProvider";
 export default function PlacesMap({ 
   places,
 }: PlacesMapProps): JSX.Element {
-  const [loading, setLoading] = useState(false)
-  const {currentPlace, currentReviews} = useCurrentPlace()
-  const [store, dispatch] = useFilters()
+  const {currentPlace} = useCurrentPlace()
+  const [store] = useFilters()
 
   const filteredPlaces = useMemo(() => {
     if (store.category != "" || store.filters.length > 0) {
@@ -40,12 +37,10 @@ export default function PlacesMap({
   }, [store.category, store.filters, places])
   
   const handlePlaceClick = async(placeId: number) => {
-    setLoading(true)
-    if (filteredPlaces) {
-      currentPlace.set(filteredPlaces.find(place => place && place.place_id === placeId))
-      currentReviews.set(await Client.reviews.getByPlaceId(placeId));
-    }
-    setLoading(false)
+    if (filteredPlaces) 
+      currentPlace.set(
+        filteredPlaces.find(place => place && place.place_id === placeId)
+      )
   }
 
   const placeMarkers = filteredPlaces.map(place => (
@@ -59,7 +54,6 @@ export default function PlacesMap({
   ));
 
   return <div className={s.mapWrapper}>
-    <Loader loading={loading}/>
     <YandexMap PlacesList={placeMarkers} currentPlace={currentPlace.value} />;
   </div>
 }

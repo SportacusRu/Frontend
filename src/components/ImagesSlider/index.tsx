@@ -10,13 +10,14 @@ export default function({images}: {images: string[]}) {
     return <Swiper
         modules={[Mousewheel]}
         slidesPerView={1}
+        autoHeight={true}
         className={s.swiper}
         centeredSlidesBounds={true}
         mousewheel={true}
         onActiveIndexChange={(i) => setActiveIndex(i.activeIndex)}
     >
         {
-        images.map((image, i) => <SwiperSlide key={i}>
+        images.map((image, i) => <SwiperSlide key={i} className={s.Slide}>
             <img src={image} alt="Image" className={s.Image}/>
         </SwiperSlide>)
         }

@@ -9,6 +9,7 @@ export default function({ range, state, setState }: NumberListProps) {
             range.map(number => <div 
                 key={number} 
                 className={state == number ? s.active : s.nonactive}
+                onClick={() => setState(number)}
             ><p>{number}</p></div>)
         }
         </div>

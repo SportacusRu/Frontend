@@ -5,6 +5,7 @@ import MapScreen from "@/components/Screens/Map";
 import { MapScreenProps } from "@/components/Screens/Map/types";
 import UserScreen from "@/components/Screens/User";
 
+const BASE_URL = "https://localhost:3000";
 const CODE_LENGTH = 4 as const;
 
 const PLACES_FILTERS = [
@@ -47,5 +48,6 @@ const EXPIRE_ADD_DAYS = 2
 
 export { 
     CODE_LENGTH, PLACES_FILTERS, PLACE_CATEGORIES, 
-    COOKIE_DATA, NAVBAR_PAGES, EXPIRE_ADD_DAYS
+    COOKIE_DATA, NAVBAR_PAGES, EXPIRE_ADD_DAYS,
+    BASE_URL
 }

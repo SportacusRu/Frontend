@@ -17,13 +17,11 @@ const likeHandler = async (
     setLikeColor: (c: Colors) => void,
     setDislikeColor: (c: Colors) => void,
 ) => {
+    likedList.add(place_id)
+    setLikeColor(Colors.accent);
+    setDislikeColor(Colors.greyDark)
     const res = await Client.places.like(place_id);
-    const error = handleError(res.error, toastQueue);
-    if (!error) {
-      setLikeColor(Colors.accent);
-      likedList.add(place_id)
-      setDislikeColor(Colors.greyDark)
-    }
+    handleError(res.error, toastQueue);
   }
 
 const dislikeHandler = async (
@@ -33,13 +31,11 @@ const dislikeHandler = async (
     setLikeColor: (c: Colors) => void,
     setDislikeColor: (c: Colors) => void,
 ) => {
+    likedList.pop(place_id)
+    setDislikeColor(Colors.accent)
+    setLikeColor(Colors.greyDark)
     const res = await Client.places.dislike(place_id);
-    const error = handleError(res.error, toastQueue);
-    if (!error) {
-        setDislikeColor(Colors.accent)
-        likedList.pop(place_id)
-        setLikeColor(Colors.greyDark)
-    }
+    handleError(res.error, toastQueue);
 }
 
 export {

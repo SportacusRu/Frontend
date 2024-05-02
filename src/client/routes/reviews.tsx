@@ -29,11 +29,14 @@ class ReviewsRouter extends baseRouter {
     async add(
         place_id: number, description: string, photos: string[], grade: number
     ) : Promise<ErrorType> {
-        return await this.post("add", {
-            place_id: place_id,
-            description: description,
-            photos: photos,
-            grade: grade
+        const photosForm = new FormData();
+        photosForm.append("photos", photos.join("|||"));
+        return await this.client.post(this.__BASE_URL + "/add", photosForm, {
+            params: {
+                place_id: place_id,
+                description: description,
+                grade: grade
+            }
         })
     }
 

@@ -14,7 +14,7 @@ import UserLikeList from "@/components/UserLikeList";
 import useUserData from "@/hooks/useUserData";
 import UpdatePassword from "@/components/Modals/UpdatePassword";
 import { useState } from "react";
-import { UpdateModals } from "./User/types";
+import { UpdateModals } from "./types";
 import { useToastQueue } from "@/shared/ToastQueueProvider";
 import UpdateName from "@/components/Modals/UpdateName";
 import UpdatePhoto from "@/components/Modals/UpdatePhoto";
@@ -43,18 +43,14 @@ export default function UserScreen() {
     const clickHandler = (m: UpdateModals) => setModal(m);
     const cancelHandler = () => setModal(undefined);
 
-    const updatePasswordHandler = async () => {
-        setModal(UpdateModals.password);
-        const res = await Client.user.updatePassword();
-        if (res.error) 
-            toast.add("Что-то пошло не так! Перезагрузите страницу");
-    }
-
     return <>
         {Client.authorized ? <Scrollbar className="">
             <div className={s.userScreen}>
                 <div className={s.userScreenInfo}>
-                    <Avatar size={AvatarSizes.M} userPhoto={userData?.photo} />
+                    <div>
+                       <Avatar size={AvatarSizes.M} userPhoto={userData?.photo} /> 
+                    </div>
+                    
                     <div>
                         <h1>{userData?.name}</h1>
                         <p>{userData?.email}</p>
@@ -72,7 +68,7 @@ export default function UserScreen() {
                         >
                             Изменить фотографию
                         </MoreLinksItem>
-                        <MoreLinksItem onClick={updatePasswordHandler}>
+                        <MoreLinksItem onClick={() => clickHandler(UpdateModals.password)}>
                             Изменить пароль
                         </MoreLinksItem>
                     </MoreLinks>

@@ -19,5 +19,12 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     type: "text" | "email" | "password" | "number"
     state: InputState
     dispatch: Dispatch<InputStateActions>
+    rows?: number
 }
 
+export interface TextAreaProps extends InputHTMLAttributes<HTMLTextAreaElement> {
+    type: "text"
+    state: InputState
+    dispatch: Dispatch<InputStateActions>
+    rows?: number
+}

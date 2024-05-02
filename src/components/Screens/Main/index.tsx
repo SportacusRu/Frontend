@@ -48,7 +48,7 @@ export default function MainScreen({ places } : MainScreenProps) {
                         description: "Посетите новые места"
                     }} 
                 />
-                <UserLikeList user={userData} loading={loading} />
+                <UserLikeList places={places} loading={loading} />
             </div>
         </Scrollbar>
     )

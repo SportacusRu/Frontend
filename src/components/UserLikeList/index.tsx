@@ -1,13 +1,13 @@
 import Loader from "../Loader";
-import { User } from "@/client/models/types";
+import { Places } from "@/client/models/types";
 import Slider from "../Slider";
-import getPlacesList from "../PlacesList";
+import getLikedList from "../LikedList";
 
-export default function({ user, loading }: {user?: User, loading: boolean }) {
+export default function({ places, loading }: {places: Places[], loading: boolean }) {
     return <>
-        {user?.like_list && user.like_list.length > 0 
+        {places && places.length > 0 
             ? <Slider 
-                slides={getPlacesList(user.like_list)}
+                slides={getLikedList(places)}
                 data={{
                     title: "Понравившиеся"
                 }}

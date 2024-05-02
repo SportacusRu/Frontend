@@ -1,8 +1,9 @@
 "use client";
 import { ReactElement } from "react";
-import { InputProps } from "./types";
+import { InputProps, TextAreaProps } from "./types";
 import StringInput from "./StringInput";
 import CodeInput from "./CodeInput";
+import TextArea from "./TextArea";
 
 /**
  * Returns a React element based on the input properties.
@@ -13,6 +14,8 @@ import CodeInput from "./CodeInput";
 function Input(props: InputProps): ReactElement<InputProps> {
     if (props.type == "number")
         return CodeInput({...props});
+    else if (props.rows) 
+        return TextArea({...props} as TextAreaProps);
     else 
         return StringInput({...props});
 }

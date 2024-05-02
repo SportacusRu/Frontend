@@ -5,6 +5,7 @@
     position: absolute;
     top: 0;
     left: 0;
+
 }
 
 .background {
@@ -16,13 +17,15 @@
 
     background: var(--color-blur);
     backdrop-filter: var(--backdrop-filter-1);
+
+    transition: var(--transition);
 }
 
 .BottomBackground {
     z-index: 600;
 }
 .TopBackground {
-    z-index: 800;
+    z-index: 1119;
 }
 
 .content {

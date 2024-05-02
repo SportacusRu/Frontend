@@ -33,7 +33,7 @@ export default function({onCancelHandler} : UpdateProps) {
     }
 
     return (
-        <ModalWrapper onCancelHandler={onCancelHandler}>
+        <ModalWrapper onCancelHandler={onCancelHandler} isTransition={true}>
             <div className={s.UpdatePhoto}>
                 <div className={s.UpdatePhotoContent}>
                     <div className={s.UpdatePhotoPhoto}>

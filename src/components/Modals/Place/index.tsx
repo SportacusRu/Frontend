@@ -24,6 +24,8 @@ import getReviewsList from "@/components/ReviewsList";
 import useUserData from "@/hooks/useUserData";
 import { dislikeHandler, likeHandler } from "@/client/controllers/likedControllers";
 import { useToastQueue } from "@/shared/ToastQueueProvider";
+import CreateReview from "../CreateReview";
+import getLink from "@/extensions/getLink";
 
 
 export default function PlaceModal() {
@@ -33,6 +35,7 @@ export default function PlaceModal() {
     const [_, setScreen] = useScreen()
     const { likedList } = useUserData()
     const [reviewsPhotos, setReviewsPhotos] = useState<string[]>([]);
+    const [createReview, setCreateReview] = useState<boolean>(false);
     const [likeColor, setLikeColor] = useState<Colors>(
       currentPlace.value && likedList.has(currentPlace.value.place_id) 
         ? Colors.accent 
@@ -57,7 +60,14 @@ export default function PlaceModal() {
             );
     }
 
-    return (
+    const handleShare = () => {
+      if (currentPlace.value) {
+        getLink(currentPlace.value.place_id)
+        toastQueue.add("Ссылка скопирована!")
+      }
+    }
+
+    return <>
       <Modal background={false}>
         {currentPlace.value && currentReviews.value ? (
           <div className={s.placeScreenWrapper}>
@@ -73,10 +83,14 @@ export default function PlaceModal() {
                       onClick={handleCancel}
                     />
                     <Menu color={Colors.white} circle={true}>
-                      <MenuItem icon={Icons.share} color={Colors.white}>
+                      <MenuItem icon={Icons.share} color={Colors.white}
+                        onClick={() => handleShare()}
+                      >
                         Поделиться
                       </MenuItem>
-                      <MenuItem icon={Icons.edit} color={Colors.white}>
+                      <MenuItem icon={Icons.edit} color={Colors.white}
+                                onClick={() => setCreateReview(true)}
+                      >
                         Оставить отзыв
                       </MenuItem>
                       <MenuItem icon={Icons.complaints} color={Colors.danger}>
@@ -132,6 +146,7 @@ export default function PlaceModal() {
                     }}
                     link={{
                       title: "Добавить отзыв",
+                      onClick: () => setCreateReview(true),
                     }}
                   />
                 </div>
@@ -142,5 +157,6 @@ export default function PlaceModal() {
           <Loader loading={true} />
         )}
       </Modal>
-    );
+      {createReview ? <CreateReview onCancelHandler={() => setCreateReview(false)}/> : <></>}
+    </>
 }

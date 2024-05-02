@@ -46,6 +46,7 @@ export default function RootLayout({
 }) {
     return (
         <ToastQueueProvider>
+            
             <html lang="en" className={fontVariables}>
                 <body>
                     <ToastFabric />

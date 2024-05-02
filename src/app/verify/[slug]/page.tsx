@@ -10,6 +10,7 @@ import { VerifyProps } from "../types";
 import { useToastQueue } from "@/shared/ToastQueueProvider";
 import InputReducer from "@/components/Input/InputReducer";
 import setNewPassword from "@/client/controllers/passwordValidate";
+import Image from "next/image";
 
 
 export default function Verify({ params } : VerifyProps) {
@@ -26,29 +27,32 @@ export default function Verify({ params } : VerifyProps) {
     return (
         <main>
             <form onSubmit={onSubmit} className={s.updatePassword}>
+                <Image src={"/logo.svg"} width={152} height={29} alt="Sportacus"/>
                 <label className={s.title}>
                     <h1>Изменение пароля</h1>
                 </label>
-                <Input 
-                    type="password"
-                    autoComplete="off"
-                    aria-label="Новый пароль"
-                    autoCapitalize="off"
-                    spellCheck={false}
-                    placeholder="Новый пароль"
-                    state={password}
-                    dispatch={dispatchPassword}
-                />
-                <Input 
-                    type="password"
-                    autoComplete="off"
-                    spellCheck={false}
-                    aria-label="Подтвердите пароль"
-                    placeholder="Подтвердите пароль"
-                    autoCapitalize="off"
-                    state={verifyPassword}
-                    dispatch={dispatchVerifyPassword}
-                />
+                <div className={s.updatePasswordInputs}>
+                    <Input 
+                        type="password"
+                        autoComplete="off"
+                        aria-label="Новый пароль"
+                        autoCapitalize="off"
+                        spellCheck={false}
+                        placeholder="Новый пароль"
+                        state={password}
+                        dispatch={dispatchPassword}
+                    />
+                    <Input 
+                        type="password"
+                        autoComplete="off"
+                        spellCheck={false}
+                        aria-label="Подтвердите пароль"
+                        placeholder="Подтвердите пароль"
+                        autoCapitalize="off"
+                        state={verifyPassword}
+                        dispatch={dispatchVerifyPassword}
+                    />
+                </div>
                 <Button type={ButtonType.MainColor}>Изменить пароль</Button>
             </form>
         </main>

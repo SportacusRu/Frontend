@@ -12,6 +12,10 @@ textarea, input[type="text"], input[type="email"], input[type="password"] {
     }
 }
 
+textarea {
+  resize: none;
+}
+
 input[type="number"] {
   padding: 12px;
   width: 46px;
@@ -86,4 +90,15 @@ input[type=file] {
   display: flex;
   gap: 8px;
   z-index: 20;
+}
+
+.textAreaWrapper {
+  position: relative;
+}
+.textAreaWrapper > p {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  color: var(--color-grey);
+  z-index: 1300;
 }

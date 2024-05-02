@@ -1,10 +1,11 @@
 import classNames from "@/extensions/classNames"
 import s from "./Modal.module.scss"
-import { useState } from "react"
+import { DetailedHTMLProps, HTMLAttributes, useState } from "react"
 
 
-export default function Modal({children, background, top} : {
-    children: React.ReactNode, background: boolean, top?: boolean
+export default function Modal({children, background, top, opacity} : {
+    children: React.ReactNode, background: boolean, 
+    top?: boolean, opacity?: number
 }) {
     const classes = useState()
     const contentClasses = classNames(
@@ -14,11 +15,11 @@ export default function Modal({children, background, top} : {
         s.background, top ? s.TopBackground : s.BottomBackground
     )
     return (
-        <div className={s.modal}>
+        <div className={s.modal} >
             <div className={contentClasses}>
                 {children}
             </div>
-            {background ? <div className={backgroundClasses}></div> : <></>}
+            {background ? <div className={backgroundClasses} style={{opacity: opacity}}></div> : <></>}
         </div>
     )
 }

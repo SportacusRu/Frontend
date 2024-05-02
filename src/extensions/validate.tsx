@@ -9,16 +9,18 @@ function validatePassword(password: string) {
     return password.length >= 6 && password.length <= 100;
 }
 
-function validateName(password: string) {
-    return password.length >= 4 && password.length <= 20;
+function validateName(name: string) {
+    return name.length >= 4 && name.length <= 20;
 }
 
-function validateText(password: string) {
-    return password.length >= 10 && password.length <= 200;
+function validateText(text: string) {
+    return text.length >= 10 && text.length <= 50;
 }
 
 function validateInputString(value: string, type: string) {
     switch (type) {
+        case "text":
+            return validateText(value)
         case "email":
             return validateEmail(value);
         case "password":

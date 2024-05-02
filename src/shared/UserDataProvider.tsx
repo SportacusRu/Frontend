@@ -29,7 +29,6 @@ const getUserData = (
         Client.user.get()
         .then((u) => {
             setUserData(u)
-            console.log(u.like_list.map(p => p.place_id))
             setLikedList(new Set<number>(u.like_list.map(p => p.place_id)))
         })
         .catch(() => toastQueue.add("Ошибка соединения! Обновите страницу"))
@@ -60,9 +59,11 @@ export default function UserDataProvider(
             value: likedList,
             add: (placeId: number) => setLikedList(likedList?.add(placeId)),
             pop: (placeId: number) => setLikedList(prev => {
-                const next = new Set(prev);
-                next.delete(placeId);
-                return next;
+                if (prev) {
+                    const next = new Set(prev.values())
+                    next.delete(placeId)
+                    return next;
+                }
             }),
             has: (placeId: number) => likedList ? likedList.has(placeId) : false
         },

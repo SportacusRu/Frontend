@@ -11,13 +11,11 @@ export default class baseRouter {
     }
 
     protected async post(url: string, data: object) : Promise<ErrorType> {
-        try {
-            await this.__client.post(`${this.__BASE_URL}/${url}`, null, {
+        
+        const res = await this.__client.post(`${this.__BASE_URL}/${url}`, null, {
                 params: data
             });
-            return { error: false };
-        } catch (error) {
-            return { error: true };
-        }
+        
+        return {error: !(res.status == 200)};
     }
 }

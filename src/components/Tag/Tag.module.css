@@ -1,4 +1,5 @@
 .Tag {
+    width: max-content;
     display: inline-block;
     padding: 8px 16px;
 

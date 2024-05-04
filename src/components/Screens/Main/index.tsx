@@ -17,8 +17,9 @@ import getRecommendedPlace from "@/client/controllers/getRecommendedPlace";
 
 export default function MainScreen({ places } : MainScreenProps) {
     const toastQueue = useToastQueue()
+    const newPlaces = getPlacesList(places, true)
     const [recommendedPlace, setRecommendedPlace] = useState<Places>()
-    const { userData, loading } = useUserData()
+    const { loading } = useUserData()
  
     useEffect(() => {  
         getRecommendedPlace(toastQueue, setRecommendedPlace)  
@@ -41,13 +42,13 @@ export default function MainScreen({ places } : MainScreenProps) {
                         handleDislike={handleDislikeRecommended}                  
                     /> 
                 </div>}
-                <Slider 
-                    slides={getPlacesList(places, true)} 
+                {newPlaces.length > 0 ? <Slider 
+                    slides={newPlaces} 
                     data={{
                         title: "Новые места",
                         description: "Посетите новые места"
                     }} 
-                />
+                /> : <></>}
                 <UserLikeList places={places} loading={loading} />
             </div>
         </Scrollbar>

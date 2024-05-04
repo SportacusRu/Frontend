@@ -4,6 +4,7 @@ import baseRouter from "./base";
 
 
 class ReviewsRouter extends baseRouter {
+
     protected __BASE_URL = "/reviews"; 
 
     async getByPlaceId(place_id: number) : Promise<Reviews[]> {

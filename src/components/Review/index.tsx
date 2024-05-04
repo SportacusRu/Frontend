@@ -1,3 +1,4 @@
+"use client";
 import Avatar from "../Avatar";
 import { Icons } from "../Icon/types";
 import Menu from "../Menu";
@@ -7,8 +8,23 @@ import { Caption, Headline, Subhead } from "../Typography";
 import { Colors } from "../color";
 import { ReviewProps } from "./types";
 import s from "./Review.module.scss"
+import { Client } from "@/client";
+import { useToastQueue } from "@/shared/ToastQueueProvider";
+import useUserData from "@/hooks/useUserData";
+
 
 export default function(props : ReviewProps) {
+    const toast = useToastQueue()
+    const { update } = useUserData()
+    
+    const handleDelete = async () => {
+        const response = await Client.reviews.remove(props.review_id);
+        if (response.error) {
+            toast.add("Что-то пошло не так! Перезагрузите страницу")
+        } else {
+            update()
+        }
+    }
     return <div className={s.review}>   
         <div className={s.reviewHeader}>
             <div className={s.reviewHeaderContent}>
@@ -18,7 +34,7 @@ export default function(props : ReviewProps) {
                     <Caption>{props.time}</Caption>
                 </div>
             </div>
-            <Menu>
+            {Client.authorized ? <Menu>
                 {props.viewUserPage ? 
                 <>
                     <MenuItem 
@@ -28,13 +44,13 @@ export default function(props : ReviewProps) {
                     >
                         Перейти к месту
                     </MenuItem> 
-                    <MenuItem 
+                    {<MenuItem 
                         icon={Icons.trash} 
                         color={Colors.danger}
-                        onClick={props.viewPageHandler}
+                        onClick={handleDelete}
                     >
                     Удалить
-                </MenuItem> 
+                    </MenuItem>}
                 </> : <></>
                 }
                 {!props.viewUserPage ? <MenuItem 
@@ -45,7 +61,7 @@ export default function(props : ReviewProps) {
                     Пожаловаться
                 </MenuItem> : <></>}
             
-            </Menu>
+            </Menu> : <></>}
         </div>
         <div className={s.reviewRating}>
             <Headline>Оценка</Headline>

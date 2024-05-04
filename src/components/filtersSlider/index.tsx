@@ -6,7 +6,9 @@ import { PLACE_CATEGORIES } from "@/config/config";
 import { Mousewheel } from "swiper/modules";
 
 
-export default function({filters, category, reducer} : FiltersSliderProps) {
+export default function({
+    filters, category, reducer, clickedFilters
+} : FiltersSliderProps) {
 
     const setCategory = (category: string) => {
         if (reducer) {
@@ -17,6 +19,15 @@ export default function({filters, category, reducer} : FiltersSliderProps) {
             }
         }
     }
+
+    const toggleFilters = (filterName: string) => {
+        if (reducer && reducer[0].filters.includes(filterName)) {
+            reducer[1]({ type: "REMOVE_FILTER", payload: filterName })
+        } else if (reducer) {
+            reducer[1]({ type: "ADD_FILTER", payload: filterName })
+        }
+    }
+
     return <Swiper 
         className={s.swiper}
         slidesPerView={"auto"}
@@ -34,13 +45,16 @@ export default function({filters, category, reducer} : FiltersSliderProps) {
             </SwiperSlide>) : <></>
         }
         {
-            reducer ? PLACE_CATEGORIES.map(
-                (category, i) => <SwiperSlide key={i} className={s.slide}>
+            reducer ? (clickedFilters ? clickedFilters : PLACE_CATEGORIES).map(
+                (item, i) => <SwiperSlide key={i} className={s.slide}>
                     <Tag 
-                        active={reducer[0].category == category} 
-                        onClick={() => setCategory(category)}
+                        active={clickedFilters ? reducer[0].filters.includes(item) : reducer[0].category == item} 
+                        onClick={clickedFilters 
+                            ? () => toggleFilters(item)
+                            : () => setCategory(item) 
+                        }
                     >
-                        {category}
+                        {item}
                     </Tag>
                 </SwiperSlide>) : <></>
         }

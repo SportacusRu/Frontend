@@ -1,3 +1,4 @@
+import { Places } from "@/client/models/types";
 import { Icons } from "@/components/Icon/types";
 import MainScreen from "@/components/Screens/Main";
 import { MainScreenProps } from "@/components/Screens/Main/types";
@@ -40,7 +41,7 @@ const NAVBAR_PAGES = [
     {
         title: "Профиль",
         icon: Icons.profile, 
-        component: (props : {}) => <UserScreen {...props}/>
+        component: (props : {places: Places[]}) => <UserScreen {...props}/>
     },
 ] as const;
 

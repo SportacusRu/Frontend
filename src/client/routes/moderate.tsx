@@ -5,7 +5,7 @@ import baseRouter from "./base";
 class ModerateRouter extends baseRouter {
     protected __BASE_URL = "/moderate"; 
 
-    async add(data: string, review_id: string = "", place_id: string = ""): Promise<ErrorType> {
+    async add(data: string, review_id?: number, place_id?: number): Promise<ErrorType> {
         return await this.post("add", {
             data: data,
             review_id: review_id,

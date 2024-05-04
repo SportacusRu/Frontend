@@ -26,6 +26,10 @@ import { dislikeHandler, likeHandler } from "@/client/controllers/likedControlle
 import { useToastQueue } from "@/shared/ToastQueueProvider";
 import CreateReview from "../CreateReview";
 import getLink from "@/extensions/getLink";
+import { CreateComplaintsType } from "../CreateComplaints/types";
+import CreateComplaints from "../CreateComplaints";
+import { Client } from "@/client";
+import ShareLink from "../ShareLink";
 
 
 export default function PlaceModal() {
@@ -35,17 +39,29 @@ export default function PlaceModal() {
     const [_, setScreen] = useScreen()
     const { likedList } = useUserData()
     const [reviewsPhotos, setReviewsPhotos] = useState<string[]>([]);
+    const [complaintReview, setComplaintReview] = useState<number>();
     const [createReview, setCreateReview] = useState<boolean>(false);
-    const [likeColor, setLikeColor] = useState<Colors>(
-      currentPlace.value && likedList.has(currentPlace.value.place_id) 
-        ? Colors.accent 
-        : Colors.greyDark
-      )
+    const [
+      createComplaint, setCreateComplaint
+    ] = useState<CreateComplaintsType | undefined>();
+    const [copyLink, setCopyLink] = useState<boolean>(false);
+
+    const [likeColor, setLikeColor] = useState<Colors>(Colors.greyDark)
     const [dislikeColor, setDislikeColor] = useState<Colors>(Colors.greyDark)
 
     useEffect(() => {
       if (currentReviews.value)
         setReviewsPhotos(currentReviews.value.flatMap(r => r.photos));
+        setLikeColor(
+          currentPlace.value && likedList.has(currentPlace.value.place_id) 
+          ? Colors.accent 
+          : Colors.greyDark
+        )
+        setDislikeColor(
+          currentPlace.value && !likedList.has(currentPlace.value.place_id) 
+            ? Colors.accent 
+            : Colors.greyDark
+        )
     }, [currentReviews.value])
 
     const handleCancel = () => {
@@ -60,11 +76,9 @@ export default function PlaceModal() {
             );
     }
 
-    const handleShare = () => {
-      if (currentPlace.value) {
-        getLink(currentPlace.value.place_id)
-        toastQueue.add("Ссылка скопирована!")
-      }
+    const handleReviewComplaint = (reviewId: number) => {
+      setComplaintReview(reviewId)
+      setCreateComplaint(CreateComplaintsType.Reviews)
     }
 
     return <>
@@ -84,18 +98,22 @@ export default function PlaceModal() {
                     />
                     <Menu color={Colors.white} circle={true}>
                       <MenuItem icon={Icons.share} color={Colors.white}
-                        onClick={() => handleShare()}
+                        onClick={() => setCopyLink(true)}
                       >
                         Поделиться
                       </MenuItem>
-                      <MenuItem icon={Icons.edit} color={Colors.white}
-                                onClick={() => setCreateReview(true)}
+                      {Client.authorized ? <MenuItem 
+                        icon={Icons.edit} color={Colors.white}
+                        onClick={() => setCreateReview(true)}
                       >
                         Оставить отзыв
-                      </MenuItem>
-                      <MenuItem icon={Icons.complaints} color={Colors.danger}>
+                      </MenuItem> : <></>}
+                      {Client.authorized ? <MenuItem 
+                        icon={Icons.complaints} color={Colors.danger}
+                        onClick={() => setCreateComplaint(CreateComplaintsType.Places)}
+                      >
                         Пожаловаться
-                      </MenuItem>
+                      </MenuItem> : <></>}
                     </Menu>
                   </header>
                   <ImagesSlider images={reviewsPhotos} />
@@ -111,22 +129,24 @@ export default function PlaceModal() {
                   <div className={s.placeScreenInfo}>
                     <Stars rating={currentPlace.value.rating} />
                     <div className={s.placeScreenButtons}>
-                    <Button
-                      type={ButtonType.Icon}
-                      onClick={() => likeHandler(
-                        toastQueue, likedList, currentPlace.value.place_id,
-                        setLikeColor, setDislikeColor
-                      )}
-                      icon={<Icon type={Icons.like} color={likeColor} />}
-                    />
-                    <Button
-                      type={ButtonType.Icon}
-                      onClick={() => dislikeHandler(
-                        toastQueue, likedList, currentPlace.value.place_id,
-                        setLikeColor, setDislikeColor
-                      )}
-                      icon={<Icon type={Icons.unlike} color={dislikeColor} />}
-                    />
+                    {Client.authorized ? <>
+                      <Button
+                        type={ButtonType.Icon}
+                        onClick={() => likeHandler(
+                          toastQueue, likedList, currentPlace.value?.place_id,
+                          setLikeColor, setDislikeColor
+                        )}
+                        icon={<Icon type={Icons.like} color={likeColor} />}
+                      />
+                      <Button
+                        type={ButtonType.Icon}
+                        onClick={() => dislikeHandler(
+                          toastQueue, likedList, currentPlace.value?.place_id,
+                          setLikeColor, setDislikeColor
+                        )}
+                        icon={<Icon type={Icons.unlike} color={dislikeColor} />}
+                      /> 
+                    </> : <></>}
                     </div>
                   </div>
                 </div>
@@ -140,14 +160,16 @@ export default function PlaceModal() {
                 </p>
                 <div className={s.placeScreenReviews}>
                   <Slider
-                    slides={getReviewsList(currentReviews.value)}
+                    slides={getReviewsList(
+                      currentReviews.value, undefined, handleReviewComplaint
+                    )}
                     data={{
                       title: "Отзывы",
                     }}
-                    link={{
+                    link={Client.authorized ? {
                       title: "Добавить отзыв",
                       onClick: () => setCreateReview(true),
-                    }}
+                    } : undefined}
                   />
                 </div>
               </div>
@@ -158,5 +180,15 @@ export default function PlaceModal() {
         )}
       </Modal>
       {createReview ? <CreateReview onCancelHandler={() => setCreateReview(false)}/> : <></>}
+      {createComplaint !== undefined ? <CreateComplaints 
+        place_id={complaintReview ? undefined : currentPlace.value?.place_id}
+        review_id={complaintReview ? complaintReview : undefined}
+        type={complaintReview? CreateComplaintsType.Reviews : CreateComplaintsType.Places}
+        onCancelHandler={() => setCreateComplaint(undefined)}
+      /> : <></>}
+      {copyLink && currentPlace.value ? <ShareLink 
+        link={getLink(currentPlace.value.place_id)} 
+        onCancelHandler={() => setCopyLink(false)} 
+      /> : <></>}
     </>
 }

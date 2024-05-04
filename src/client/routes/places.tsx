@@ -33,14 +33,17 @@ class PlacesRouter extends baseRouter {
     async add(
         title: string, geo: string, description: string, 
         category: string, filters_list: string[]
-    ) : Promise<ErrorType> {
-        return await this.post("add", {
-            title: title, 
-            geo: geo, 
-            description: description, 
-            category: category, 
-            filters_list: filters_list
+    ) : Promise<number> {
+        const request = await this.__client.post(this.__BASE_URL + "/add", null, {
+            params: {
+                title: title, 
+                geo: geo, 
+                description: description, 
+                category: category, 
+                filters_list: filters_list.join(",")
+            }
         })
+        return request.data;
     }
 
     async like(place_id: number) : Promise<ErrorType> {

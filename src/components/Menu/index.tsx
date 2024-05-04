@@ -15,7 +15,7 @@ export default function({children, color, circle}: {children: ReactNode, color?:
         <Icon type={Icons.more} color={color ? color : Colors.greyDark}/>
     </MenuButton>
     return (
-        <Menu 
+        <Menu
             direction="left"
             reposition="initial"
             menuButton={menuButton} 

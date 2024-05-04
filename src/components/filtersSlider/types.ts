@@ -4,4 +4,5 @@ export type FiltersSliderProps = {
     filters?: string[]
     category?: string
     reducer?: FiltersContextProps
+    clickedFilters?: readonly string[]
 }

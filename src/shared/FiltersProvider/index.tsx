@@ -1,7 +1,7 @@
 "use client";
 import { createContext, useContext, useReducer } from "react";
-import { FiltersContextProps, FiltersState } from "./types";
-import filtersReduser from "./reducer";
+import { FiltersContextProps } from "./types";
+import filtersReducer from "./reducer";
 
 
 
@@ -13,9 +13,9 @@ export const useFilters = () => useContext(FiltersContext);
 export default function FiltersProvider(
     {children}: {children: React.ReactNode}
 ) {
-    const filtersReducer = useReducer(filtersReduser, { filters: [], category: ""});
+    const filters = useReducer(filtersReducer, { filters: [], category: ""});
     return (
-        <FiltersContext.Provider value={filtersReducer}>
+        <FiltersContext.Provider value={filters}>
             {children}
         </FiltersContext.Provider>
     )

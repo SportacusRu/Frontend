@@ -18,6 +18,7 @@ import { UpdateModals } from "./types";
 import { useToastQueue } from "@/shared/ToastQueueProvider";
 import UpdateName from "@/components/Modals/UpdateName";
 import UpdatePhoto from "@/components/Modals/UpdatePhoto";
+import { Places } from "@/client/models/types";
 
 const getModal = (
     modal: UpdateModals | undefined, 
@@ -35,7 +36,7 @@ const getModal = (
     }
   }
 
-export default function UserScreen() {
+export default function UserScreen({ places } : {places: Places[]}) {
     const toast = useToastQueue()
     const { userData, loading } = useUserData()
     const [modal, setModal] = useState<UpdateModals>()
@@ -75,12 +76,12 @@ export default function UserScreen() {
                 </div>
                 {userData?.reviews_list && userData.reviews_list.length > 0 
                 ? <Slider 
-                    slides={getReviewsList(userData.reviews_list, userData.name)}
+                    slides={getReviewsList(userData.reviews_list, userData.name, undefined, places)}
                     data={{
                         title: "Мои отзывы"
                     }}
                 /> : <></>}
-                <UserLikeList user={userData} loading={loading} />
+                <UserLikeList places={places} loading={loading} />
             </div>
         </Scrollbar>: <Authentication />}
         {getModal(modal, cancelHandler)}

@@ -5,9 +5,16 @@
 
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
     
     cursor: pointer;
+}
+
+.MoreLinksItem > p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .MoreLinksItem:hover > svg{

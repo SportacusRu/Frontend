@@ -1,0 +1,96 @@
+.createPlace {
+    height: calc(100dvh - 120px);
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+
+    width: 100%;
+    
+
+    > h1 {
+        margin: 0 auto;
+    }
+    &Controllers {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    &Input {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+
+        box-sizing: border-box;
+        padding: 0 24px;
+
+        > p {
+            box-sizing: border-box;
+            padding: 0 16px;
+            color: var(--color-grey-dark);
+        }
+    }
+
+    &Select {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        > p {
+            margin: 0 auto;
+            color: var(--color-grey);
+        }
+    }
+
+    &NumberList {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        gap: 12px;
+
+        box-sizing: border-box;
+        padding: 0 24px;
+
+        > p {
+            margin: 0 auto;
+            color: var(--color-grey);
+        }
+    }
+
+    &Uploader {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+
+        > p {
+            text-align: center;
+            margin: 0 auto;
+            color: var(--color-grey);            
+        }
+    }
+
+    &Buttons {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        box-sizing: border-box;
+        padding: 0 24px;
+
+        > p {
+            text-align: center;
+            margin: 0 auto;
+            color: var(--color-grey);
+        }
+    }
+
+    &Wrapper {
+        height: calc(100dvh - 216px);
+    }
+}

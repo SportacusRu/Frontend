@@ -1,6 +1,6 @@
 import { FiltersState, FiltersStateActions } from "./types";
 
-export default function filtersReduser(
+export default function filtersReducer(
     state: FiltersState, action: FiltersStateActions
 ) : FiltersState {
     switch (action.type) {

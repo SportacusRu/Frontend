@@ -2,7 +2,7 @@
 import useWidth from "@/hooks/useSize";
 import { ViewProps } from "./types";
 import Navbar from "../Navbar";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import PlacesMap from "../PlacesMap/PlacesMap";
 import Screens from "../Screens";
 import Button from "../Button";
@@ -14,13 +14,23 @@ import useScreen, { PAGES } from "@/hooks/useScreen";
 import { NAVBAR_PAGES } from "@/config/config";
 import { useCurrentPlace } from "@/shared/CurrentPlaceProvider";
 import Loader from "../Loader";
+import { Client } from "@/client";
 
 
 export default function(props : ViewProps) {
     const { width } = useWidth();
 
     const [screen, setScreen] = useScreen();
+    const authorized = Client.authorized
     const { currentPlace, currentReviews } = useCurrentPlace();
+    const [modalCreate, setModalCreate] = useState<boolean>(false);
+
+    const handleModalCreate = (modalView: boolean) => {
+        setModalCreate(modalView);
+        if (modalView) {
+            setScreen(PAGES.Map);
+        }
+    }
 
     useEffect(() => {
         if (currentPlace.value) {
@@ -45,6 +55,8 @@ export default function(props : ViewProps) {
             {
                 NAVBAR_PAGES.map((p, i) => <p.component 
                     key={i} places={props.places}
+                    setModalCreate={handleModalCreate}
+                    modalCreate={modalCreate}
                 />)
             }
         </Screens>
@@ -56,10 +68,11 @@ export default function(props : ViewProps) {
         {
             (width && width >= 430) || (screen == PAGES.Map) ? 
                 <div className={"actionButtons"}>
-                    <Button 
+                    {authorized ? <Button 
                         type={ButtonType.Icon} 
                         icon={<Icon type={Icons.add} color={Colors.greyLight}/>}
-                    />
+                        onClick={() => handleModalCreate(true)}
+                    /> : <></>}
                     <Button 
                         type={ButtonType.Icon} 
                         icon={<Icon type={Icons.filter} color={Colors.greyLight}/>} 
@@ -77,6 +90,7 @@ export default function(props : ViewProps) {
                 </div>
             : <></>
         }
+        {}
         <Loader loading={currentReviews.loading}/>
     </>
 }

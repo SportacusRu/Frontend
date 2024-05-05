@@ -23,6 +23,11 @@
     }
 
     &Wrapper {
+        height: 524px;
+    }
+}
+@media (max-height: 740px) {
+    .CreateReviewWrapper {
         height: calc(100dvh - 216px);
     }
 }

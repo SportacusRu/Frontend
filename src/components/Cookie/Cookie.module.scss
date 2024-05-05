@@ -42,3 +42,21 @@
     opacity: 0;
     visibility: hidden;
 }
+
+@media (max-width: 430px) {
+    .cookie {
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        width: calc(100% - 48px);
+        flex-direction: column;
+        gap: 24px;
+        &Data {
+            width: 100%;
+        }
+        
+        button {
+            width: 100%;
+        }
+    }
+}

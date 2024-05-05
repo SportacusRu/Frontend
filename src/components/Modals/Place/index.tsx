@@ -181,9 +181,9 @@ export default function PlaceModal() {
       </Modal>
       {createReview ? <CreateReview onCancelHandler={() => setCreateReview(false)}/> : <></>}
       {createComplaint !== undefined ? <CreateComplaints 
-        place_id={complaintReview ? undefined : currentPlace.value?.place_id}
-        review_id={complaintReview ? complaintReview : undefined}
-        type={complaintReview? CreateComplaintsType.Reviews : CreateComplaintsType.Places}
+        place_id={complaintReview !== undefined ? undefined : currentPlace.value?.place_id}
+        review_id={complaintReview !== undefined ? complaintReview : undefined}
+        type={complaintReview !== undefined ? CreateComplaintsType.Reviews : CreateComplaintsType.Places}
         onCancelHandler={() => setCreateComplaint(undefined)}
       /> : <></>}
       {copyLink && currentPlace.value ? <ShareLink 

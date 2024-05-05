@@ -110,4 +110,7 @@ a, button {
     -ms-user-select: none;
     user-select: none;
 }
-a:focus, button:focus { outline: none !important;}
+a:focus, button:focus { 
+    outline: none !important;
+    box-shadow: none !important;
+}

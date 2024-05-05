@@ -21,4 +21,8 @@
             color: var(--color-grey);
         }
     }
+
+    &Wrapper {
+        height: calc(100dvh - 216px);
+    }
 }

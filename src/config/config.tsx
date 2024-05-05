@@ -6,7 +6,7 @@ import MapScreen from "@/components/Screens/Map";
 import { MapScreenProps } from "@/components/Screens/Map/types";
 import UserScreen from "@/components/Screens/User";
 
-const BASE_URL = "https://localhost:3000";
+const BASE_URL = "https://sportacus.вебериум.рф";
 const CODE_LENGTH = 4 as const;
 
 const PLACES_FILTERS = [

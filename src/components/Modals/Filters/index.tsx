@@ -66,6 +66,7 @@ export default function FiltersModal() {
                 style={width <= 430 ? {height: `${containerHeight}px`} : {}}
             >
                 {width <= 430 ? <div 
+                    draggable={true}
                     className={s.filterScreenHandle}
                     onTouchStart={onMouseDownHandler}
                     onTouchEnd={onMouseUpHandler}

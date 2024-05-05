@@ -17,7 +17,7 @@ const likeHandler = async (
     setLikeColor: (c: Colors) => void,
     setDislikeColor: (c: Colors) => void,
 ) => {
-    if (place_id) {
+    if (place_id !== undefined) {
         likedList.add(place_id)
         setLikeColor(Colors.accent);
         setDislikeColor(Colors.greyDark)
@@ -33,7 +33,7 @@ const dislikeHandler = async (
     setLikeColor: (c: Colors) => void,
     setDislikeColor: (c: Colors) => void,
 ) => {
-    if (place_id) { 
+    if (place_id !== undefined) { 
         likedList.pop(place_id)
         setDislikeColor(Colors.accent)
         setLikeColor(Colors.greyDark)

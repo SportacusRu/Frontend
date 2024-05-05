@@ -19,7 +19,7 @@ function validateText(text: string) {
 
 function validateInputString(value: string, type: string) {
     switch (type) {
-        case "text":
+        case "textarea":
             return validateText(value)
         case "email":
             return validateEmail(value);

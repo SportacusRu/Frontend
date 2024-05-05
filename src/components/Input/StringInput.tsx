@@ -10,6 +10,7 @@ export default function StringInput({
         const validate = validateInputString(text, type);
         dispatch({ type: "REPLACE", payload: text })
         dispatch({ type: "VALIDATE", payload: validate })
+        console.log(validate, text)
     }
 
     return <input

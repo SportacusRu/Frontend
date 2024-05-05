@@ -9,7 +9,7 @@ export default function TextArea({
     type, state, dispatch, ...props 
 }: TextAreaProps): JSX.Element {
     const onChange = (text: string) => {
-        const validate = validateInputString(text, type);
+        const validate = validateInputString(text, "textarea");
         if (state.value.length >= 50 && text.length >= 50) return
         dispatch({ type: "REPLACE", payload: text })
         dispatch({ type: "VALIDATE", payload: validate })

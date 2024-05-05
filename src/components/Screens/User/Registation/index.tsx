@@ -11,6 +11,7 @@ import { RegistationStages } from "./types";
 import { useToastQueue } from "@/shared/ToastQueueProvider";
 import { Client } from "@/client";
 import VerifyCode from "./verifyCode";
+import Scrollbar from "@/components/Scrollbar";
 
 
 export default function() {
@@ -46,44 +47,48 @@ export default function() {
         {
         stage == RegistationStages.Start ? 
             <>
-                <form onSubmit={handleSubmit} className={s.registrationForm}>
-                <div className={s.registrationTitle}>
-                    <h1>Регистрация<br />в Sportacus</h1>
-                    <p>Создайте аккаунт в Sportacus и получите доступ к дополнительным функциям!</p>
-                </div>
-                <div className={s.registrationControllers}>
-                    <div className={s.registrationInputs}>
-                        <Input 
-                            type="text" state={name} 
-                            dispatch={nameDispatch} placeholder="Имя"
-                        />
-                        <Input 
-                            type="password" state={password} 
-                            dispatch={passwordDispatch} placeholder="Пароль"
-                        />
-                        <Input 
-                            type="password" state={verifyPassword} 
-                            dispatch={verifyPasswordDispatch} 
-                            placeholder="Подтверждение пароля"
-                        />
-                        <Input 
-                            type="email" state={email} 
-                            dispatch={emailDispatch} 
-                            placeholder="Почта пользователя"
-                        />
-                    </div>
-                    <div className={s.registrationButtons}>
-                        <Button type={ButtonType.MainColor}>
-                            Продолжить
-                        </Button>
-                        <Caption>
-                            Имя не менее 4 и не более 20 символов,
-                            <br/>
-                            пароль не менее 6 символов
-                        </Caption>
-                    </div>
-                </div>
-            </form> 
+                <div className={s.ScrollWrapper}>
+                    <Scrollbar className="">
+                        <form onSubmit={handleSubmit} className={s.registrationForm}>
+                        <div className={s.registrationTitle}>
+                            <h1>Регистрация<br />в Sportacus</h1>
+                            <p>Создайте аккаунт в Sportacus и получите доступ к дополнительным функциям!</p>
+                        </div>
+                        <div className={s.registrationControllers}>
+                            <div className={s.registrationInputs}>
+                                <Input 
+                                    type="text" state={name} 
+                                    dispatch={nameDispatch} placeholder="Имя"
+                                />
+                                <Input 
+                                    type="password" state={password} 
+                                    dispatch={passwordDispatch} placeholder="Пароль"
+                                />
+                                <Input 
+                                    type="password" state={verifyPassword} 
+                                    dispatch={verifyPasswordDispatch} 
+                                    placeholder="Подтверждение пароля"
+                                />
+                                <Input 
+                                    type="email" state={email} 
+                                    dispatch={emailDispatch} 
+                                    placeholder="Почта пользователя"
+                                />
+                            </div>
+                            <div className={s.registrationButtons}>
+                                <Button type={ButtonType.MainColor}>
+                                    Продолжить
+                                </Button>
+                                <Caption>
+                                    Имя не менее 4 и не более 20 символов,
+                                    <br/>
+                                    пароль не менее 6 символов
+                                </Caption>
+                            </div>
+                        </div>
+                    </form> 
+                </Scrollbar>
+            </div>
         </> : <VerifyCode 
                     authKey={authKey} 
                     email={email.value}

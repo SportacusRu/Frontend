@@ -29,9 +29,9 @@ export const metadata: Metadata = {
       siteName: "Sportacus",
       images: [
         {
-          url: "https://sportacus.vercel.app/og.png",
-          width: 1920,
-          height: 1080,
+          url: "https://sportacus.вебериум.рф/ogimage.png",
+          width: 968,
+          height: 544,
         },
       ],
       locale: "ru-RU",

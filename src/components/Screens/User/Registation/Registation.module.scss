@@ -46,3 +46,18 @@
         gap: 48px;
     }
 }
+@media (max-height: 760px) {
+    .registration {
+        &Form {
+            margin-top: 64px;
+            height: auto;
+            justify-content: flex-start;
+
+            gap: 48px;
+            padding-bottom: 24px;
+        }
+    }
+    .ScrollWrapper {
+        height: calc(100dvh - 67px);
+    }
+}

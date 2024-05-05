@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+sitemap: https://sportacus.xn--90abjbpy0az.xn--p1ai/sitemap.xml

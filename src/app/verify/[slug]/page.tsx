@@ -11,17 +11,19 @@ import { useToastQueue } from "@/shared/ToastQueueProvider";
 import InputReducer from "@/components/Input/InputReducer";
 import setNewPassword from "@/client/controllers/passwordValidate";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 
 export default function Verify({ params } : VerifyProps) {
     const toastQueue = useToastQueue();
+    const router = useRouter();
     const [password, dispatchPassword] = useReducer(InputReducer, defaultInputState);
     const [verifyPassword, dispatchVerifyPassword] = useReducer(InputReducer, defaultInputState);
-
     const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (password.value == verifyPassword.value && password.validateResult)
-            await setNewPassword(params.slug, password, toastQueue);
+            await setNewPassword(params.slug, password, toastQueue, router);
+
         else toastQueue.add("Пароли не совпадают или меньше 6 символов");
     }
     return (

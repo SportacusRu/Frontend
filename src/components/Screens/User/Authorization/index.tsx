@@ -10,6 +10,7 @@ import { Stages } from "../Authentication/types";
 import { FormEvent } from "react";
 import { Client } from "@/client";
 import { useToastQueue } from "@/shared/ToastQueueProvider";
+import Scrollbar from "@/components/Scrollbar";
 
 
 export default function({ setStage } : AuthorizationProps) {
@@ -27,31 +28,33 @@ export default function({ setStage } : AuthorizationProps) {
         }
     }
     return (
-        <form onSubmit={handleSubmit} className={s.authorizationForm}>
-            <h1>Вход</h1>
-            <div className={s.authorizationControllers}>
-                <div className={s.authorizationInputs}>
-                    <Input 
-                        type="email" state={email} 
-                        dispatch={emailDispatch} placeholder="Почта пользователя"
-                    />
-                    <Input 
-                        type="password" state={password} 
-                        dispatch={passwordDispatch} placeholder="Пароль"
-                    />
+        <Scrollbar className={s.Scroll}>
+            <form onSubmit={handleSubmit} className={s.authorizationForm}>
+                <h1>Вход</h1>
+                <div className={s.authorizationControllers}>
+                    <div className={s.authorizationInputs}>
+                        <Input 
+                            type="email" state={email} 
+                            dispatch={emailDispatch} placeholder="Почта пользователя"
+                        />
+                        <Input 
+                            type="password" state={password} 
+                            dispatch={passwordDispatch} placeholder="Пароль"
+                        />
+                    </div>
+                    <div className={s.authorizationButtons}>
+                        <Button type={ButtonType.MainColor}>
+                            Войти
+                        </Button>
+                        <Button 
+                            type={ButtonType.PrimaryDark} 
+                            onClick={() => setStage(Stages.Registration)}
+                        >
+                            Зарегестрироваться
+                        </Button>
+                    </div>
                 </div>
-                <div className={s.authorizationButtons}>
-                    <Button type={ButtonType.MainColor}>
-                        Войти
-                    </Button>
-                    <Button 
-                        type={ButtonType.PrimaryDark} 
-                        onClick={() => setStage(Stages.Registration)}
-                    >
-                        Зарегестрироваться
-                    </Button>
-                </div>
-            </div>
-        </form>
+            </form>
+        </Scrollbar>
     )
 }

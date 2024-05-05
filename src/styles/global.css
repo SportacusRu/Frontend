@@ -86,6 +86,11 @@ input, button {
     font-family: inherit;
 }
 
+textarea {
+    box-sizing: border-box;
+    outline: none;
+}
+
 svg {
     object-fit: cover;
     object-position: center;

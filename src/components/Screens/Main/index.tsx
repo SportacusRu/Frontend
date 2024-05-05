@@ -23,7 +23,7 @@ export default function MainScreen({ places } : MainScreenProps) {
  
     useEffect(() => {  
         getRecommendedPlace(toastQueue, setRecommendedPlace)  
-    }, [Client.authorized, recommendedPlace])
+    }, [])
 
     const handleDislikeRecommended = () => {
         getRecommendedPlace(toastQueue, setRecommendedPlace)  

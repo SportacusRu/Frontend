@@ -61,6 +61,8 @@ body {
     
     background: var(--color-body);
     color: var(--color-white);
+
+    overscroll-behavior-y: contain;
 }
 
 main {

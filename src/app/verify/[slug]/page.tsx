@@ -12,6 +12,7 @@ import InputReducer from "@/components/Input/InputReducer";
 import setNewPassword from "@/client/controllers/passwordValidate";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import Link from "@/components/Link";
 
 
 export default function Verify({ params } : VerifyProps) {
@@ -29,7 +30,9 @@ export default function Verify({ params } : VerifyProps) {
     return (
         <main>
             <form onSubmit={onSubmit} className={s.updatePassword}>
-                <Image src={"/logo.svg"} width={152} height={29} alt="Sportacus"/>
+                <Link href="/">
+                    <Image src={"/logo.svg"} width={152} height={29} alt="Sportacus"/>
+                </Link>
                 <label className={s.title}>
                     <h1>Изменение пароля</h1>
                 </label>

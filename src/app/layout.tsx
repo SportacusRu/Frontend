@@ -37,6 +37,15 @@ export const metadata: Metadata = {
       locale: "ru-RU",
       type: "website",
     },
+    manifest: "https://sportacus.вебериум.рф/site.webmanifest",
+    robots: {
+        index: true,
+        follow: true, 
+        
+    },
+    alternates: {
+        canonical: "https://sportacus.вебериум.рф/"
+    }
 };
 
 export default function RootLayout({

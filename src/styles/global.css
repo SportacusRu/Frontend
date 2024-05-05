@@ -100,7 +100,7 @@ a {
     text-decoration: none;
 }
 
-a, button {
+div, a, button {
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
@@ -110,7 +110,7 @@ a, button {
     -ms-user-select: none;
     user-select: none;
 }
-a:focus, button:focus { 
+div:focus, a:focus, button:focus { 
     outline: none !important;
     box-shadow: none !important;
 }

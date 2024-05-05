@@ -33,6 +33,7 @@ export default function() {
                 src={"/UserAdd.svg"} 
                 height={200} width={200} 
                 alt="Add a new user or authorization old" 
+                className={s.authenticationImage}
             />
             <div className={s.authenticationContent}>
                 <h1>

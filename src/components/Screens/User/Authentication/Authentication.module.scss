@@ -11,6 +11,10 @@
     padding: 0 24px;
     gap: 64px;
 
+    &Image {
+        width: 200px;
+        height: 200px;
+    }
     div {
         width: 100%;
     }
@@ -33,5 +37,21 @@
         position: fixed;
         left: 24px;
         top: 24px;
+    }
+}
+
+@media (max-width: 430px) {
+    .authentication {
+        height: calc(100% - 64px);
+    }
+}
+
+@media (max-height: 640px) {
+    .authentication {
+        gap: 32px;
+        &Image {
+            width: 160px;
+            height: 160px;
+        }
     }
 }

@@ -46,6 +46,11 @@
         gap: 48px;
     }
 }
+
+.ScrollWrapper {
+    height: 100%;
+}
+
 @media (max-height: 760px) {
     .registration {
         &Form {

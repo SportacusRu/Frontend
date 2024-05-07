@@ -19,9 +19,7 @@ import { useCurrentPlace } from "@/shared/CurrentPlaceProvider";
  * @param {Place} currentPlace - The current place selected on the map
  * @return {JSX.Element} The Yandex Map component with the list of place markers
  */
-export default function PlacesMap({ 
-  places,
-}: PlacesMapProps): JSX.Element {
+export default function PlacesMap({ places }: PlacesMapProps): JSX.Element {
   const {currentPlace} = useCurrentPlace()
   const [store] = useFilters()
 
@@ -39,7 +37,7 @@ export default function PlacesMap({
   const handlePlaceClick = async(placeId: number) => {
     if (filteredPlaces) 
       currentPlace.set(
-        filteredPlaces.find(place => place && place.place_id === placeId)
+        places.find(place => place && place.place_id === placeId)
       )
   }
 

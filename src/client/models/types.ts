@@ -29,7 +29,7 @@ export type Places = {
     reviews_list: Reviews[]
     category: string
     filters_list: string[],
-    preview: string
+
 }
 
 export type User = {

@@ -34,7 +34,7 @@ export default function(props : PlaceProps) {
           <Image
             width={382}
             height={220}
-            src={props.place.preview}
+            src={`https://api.xn--90abjbpy0az.xn--p1ai/places/getPreview?place_id=${props.place.place_id}`}
             loading="lazy"
             alt={props.place.title}
           />

@@ -22,7 +22,10 @@ const nextConfig = {
         fileLoaderRule.exclude = /\.svg$/i
     
         return config
-      },
+    },
+    images: {
+      domains: ['api.xn--90abjbpy0az.xn--p1ai'],
+    }
 };
 
 export default nextConfig;

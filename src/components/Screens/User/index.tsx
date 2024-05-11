@@ -49,7 +49,7 @@ export default function UserScreen({ places } : {places: Places[]}) {
             <div className={s.userScreen}>
                 <div className={s.userScreenInfo}>
                     <div>
-                       <Avatar size={AvatarSizes.M} userPhoto={userData?.photo} /> 
+                       <Avatar upload={`https://${process.env.NEXT_PUBLIC_AXIOS_BASE_URL}/users/getPhoto`} size={AvatarSizes.M} userPhoto={userData?.photo} /> 
                     </div>
                     
                     <div>

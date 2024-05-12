@@ -29,7 +29,7 @@ const nextConfig = {
           protocol: 'https',
           hostname: 'api.xn--90abjbpy0az.xn--p1ai',
           pathname: '/places/**',
-          port: ''
+          port: '',
         },
         {
           protocol: 'https',
@@ -38,6 +38,7 @@ const nextConfig = {
           port: ''
         },
       ],
+      unoptimized: true
     }
 };
 

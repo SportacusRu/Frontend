@@ -24,8 +24,20 @@ const nextConfig = {
         return config
     },
     images: {
-      domains: ['api.xn--90abjbpy0az.xn--p1ai'],
-      
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'api.xn--90abjbpy0az.xn--p1ai',
+          pathname: '/places/**',
+          port: ''
+        },
+        {
+          protocol: 'https',
+          hostname: 'api.xn--90abjbpy0az.xn--p1ai',
+          pathname: '/user/**',
+          port: ''
+        },
+      ],
     }
 };
 

@@ -45,6 +45,10 @@ class UserRouter extends baseRouter {
             }
         )
     }
+
+    getPhoto(user_id: number | undefined) : string {
+        return `${process.env.NEXT_PUBLIC_AXIOS_BASE_URL}/user/getPhoto?user_id=${user_id}`
+    }
 }
 
 export default UserRouter;

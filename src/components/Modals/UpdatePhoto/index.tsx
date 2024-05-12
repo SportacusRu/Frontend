@@ -13,11 +13,11 @@ import useUserData from "@/hooks/useUserData";
 
 export default function({onCancelHandler} : UpdateProps) {
     const toast = useToastQueue()
-    const { update } = useUserData()
-    const [image, setImage] = useState<string>()
+    const { update, setImage } = useUserData()
+    const [image, setNewImage] = useState<string>()
 
     const uploadHandler = async (file: string) => {
-        setImage(file)
+        setNewImage(file)
     }
 
     const updateHandler = async () => {
@@ -26,7 +26,7 @@ export default function({onCancelHandler} : UpdateProps) {
 
             if (res.error)
                 toast.add("Что-то пошло не так! Перезагрузите страницу")
-            else update()
+            else setImage(image)
 
             onCancelHandler()
         }

@@ -28,7 +28,9 @@ export default function(props : ReviewProps) {
     return <div className={s.review}>   
         <div className={s.reviewHeader}>
             <div className={s.reviewHeaderContent}>
-                <Avatar userPhoto={props.userPhoto} />
+                <Avatar 
+                    upload={Client.user.getPhoto(props.user_id)} 
+                 />
                 <div>
                     <Subhead>{props.viewUserPage ? "Вы" : props.userName }</Subhead>
                     <Caption>{props.time}</Caption>

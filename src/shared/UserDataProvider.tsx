@@ -16,7 +16,8 @@ type UserDataType = {
     userData: User | undefined,
     loading: boolean,
     likedList: likedListData,
-    update: () => void
+    update: () => void,
+    setImage: (photo: string) => void
 };
 
 const getUserData = (
@@ -67,7 +68,10 @@ export default function UserDataProvider(
             }),
             has: (placeId: number) => likedList ? likedList.has(placeId) : false
         },
-        update: update
+        update: update,
+        setImage: (photo: string) => {
+            if (userData) setUserData({...userData, photo: photo})
+        }
     }
 
     return (

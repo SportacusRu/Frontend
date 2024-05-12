@@ -25,6 +25,7 @@ const nextConfig = {
     },
     images: {
       domains: ['api.xn--90abjbpy0az.xn--p1ai'],
+      
     }
 };
 

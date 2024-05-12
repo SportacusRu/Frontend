@@ -1,4 +1,5 @@
 export type ReviewProps = {
+    user_id: number,
     place_id: number,
     review_id: number,
     rating: number,

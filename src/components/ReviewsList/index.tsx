@@ -10,6 +10,8 @@ export default function getReviewsList(
     const {currentPlace} = useCurrentPlace()
     return reviews && reviews.map(review => 
         <Review 
+            key={review.review_id} 
+            user_id={review.user_id}
             place_id={review.place_id} 
             review_id={review.review_id} 
             rating={review.grade} 

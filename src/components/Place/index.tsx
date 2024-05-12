@@ -34,7 +34,7 @@ export default function(props : PlaceProps) {
           <Image
             width={382}
             height={220}
-            src={`https://${process.env.NEXT_PUBLIC_AXIOS_BASE_URL}/places/getPreview?place_id=${props.place.place_id}`}
+            src={`${process.env.NEXT_PUBLIC_AXIOS_BASE_URL}/places/getPreview?place_id=${props.place.place_id}`}
             loading="lazy"
             alt={props.place.title}
           />

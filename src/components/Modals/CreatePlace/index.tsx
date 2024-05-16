@@ -19,6 +19,7 @@ import { useUserPosition } from "@/shared/UserPositionProvider";
 import { useToastQueue } from "@/shared/ToastQueueProvider";
 import ImagesList from "@/components/ImagesList";
 import { useCurrentPlace } from "@/shared/CurrentPlaceProvider";
+import Loader from "@/components/Loader";
 
 
 export default function({onCancelHandler} : {onCancelHandler: () => void}) {
@@ -30,6 +31,7 @@ export default function({onCancelHandler} : {onCancelHandler: () => void}) {
     const [grade, setGrade] = useState(3);
     const [storeFilters, dispatchFilters] = useFilters();
     const [files, setFiles] = useState<string[]>([])
+    const [loading, setLoading] = useState(false)
 
     const handleClick = async () => {
         if (title.validateResult 
@@ -38,6 +40,7 @@ export default function({onCancelHandler} : {onCancelHandler: () => void}) {
             && storeFilters.category.length > 0
             && storeFilters.filters.length > 0
         ) {
+            setLoading(true)
             const placeId = await Client.places.add(
                 title.value, geo.position.toReversed().join(" "), description.value,
                 storeFilters.category, storeFilters.filters
@@ -45,6 +48,7 @@ export default function({onCancelHandler} : {onCancelHandler: () => void}) {
             const reviewRes = await Client.reviews.add(
                 placeId, description.value, files, grade
             )
+            setLoading(false)
             if (placeId > -1 && reviewRes.error) {
                 toast.add("Что-то пошло не так! Перезагрузите страницу")
             } else {
@@ -57,6 +61,7 @@ export default function({onCancelHandler} : {onCancelHandler: () => void}) {
     }
     return (
         <ModalWrapper onCancelHandler={onCancelHandler} isTransition={true}>
+            {loading ? <Loader loading={loading} /> : <></>}
             <div className={s.createPlaceWrapper}>
             <Scrollbar className="">
                 <div className={s.createPlace}>

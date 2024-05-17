@@ -17,10 +17,10 @@
     text-overflow: ellipsis;
 }
 
-.MoreLinksItem:hover > svg{
+.MoreLinksItem:hover > div > svg{
     color: #fff;
 }
-.MoreLinksItem > svg {
+.MoreLinksItem > div > svg {
     transform: rotate(180deg);
     transition: var(--transition);
 }

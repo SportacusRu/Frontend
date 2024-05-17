@@ -22,13 +22,12 @@ export default function({onCancelHandler} : UpdateProps) {
 
     const updateHandler = async () => {
         if (image) {
-            const res = await Client.user.updatePhoto(image)
-
-            if (res.error)
-                toast.add("Что-то пошло не так! Перезагрузите страницу")
-            else setImage(image)
-
+            setImage(image)
             onCancelHandler()
+            
+            const res = await Client.user.updatePhoto(image)
+            if (res.error)
+                toast.add("Не удалось загрузить фотографию! Перезагрузите страницу")
         }
     }
 

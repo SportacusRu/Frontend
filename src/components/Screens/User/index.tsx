@@ -86,7 +86,7 @@ export default function UserScreen({ places } : {places: Places[]}) {
                 /> : <></>}
                 <UserLikeList places={places} loading={loading} />
             </div>
-        </Scrollbar>: <Authentication />}
+        </Scrollbar> : <Authentication />}
         {getModal(modal, cancelHandler)}
     </>
 }

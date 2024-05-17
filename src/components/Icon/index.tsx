@@ -3,6 +3,7 @@ import { IconProps, IconSize } from "./types";
 import dynamic from "next/dynamic";
 import { colorsList } from "../color";
 
+
 const sizes = [
   24, 32, 64
 ]
@@ -23,5 +24,7 @@ export default function Icon({ type, color, size }: IconProps): JSX.Element {
   const colorValue = color !== undefined ? colorsList[color] : undefined;
   const iconSize = size ? sizes[size] : sizes[IconSize.S];
 
-  return <IconComponent width={iconSize} height={iconSize} color={colorValue} />;
+  return <div style={{ width: iconSize, height: iconSize }}>
+    <IconComponent width={iconSize} height={iconSize} color={colorValue} />
+  </div>
 };

@@ -63,7 +63,7 @@ export default function(props : ViewProps) {
         {
             width && width <= 430 
             ? <Navbar items={NAVBAR_PAGES} />
-            : width && <PlacesMap places={props.places} />
+            : width ? <PlacesMap places={props.places} /> : <></>
         }
         {
             (width && width >= 430) || (screen == PAGES.Map) ? 
@@ -90,7 +90,6 @@ export default function(props : ViewProps) {
                 </div>
             : <></>
         }
-        {}
         <Loader loading={currentReviews.loading}/>
     </>
 }

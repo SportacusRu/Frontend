@@ -27,7 +27,7 @@ import formatDate from "@/extensions/formatData";
 export default function({onCancelHandler} : {onCancelHandler: () => void}) {
     const [title, titleDispatcher] = useInputReducer()
     const toast = useToastQueue()
-    const {currentPlace} = useCurrentPlace()
+    const {currentPlace, currentReviews} = useCurrentPlace()
     const {userData} = useUserData()
     const geo = useUserPosition()
     const [description, descriptionDispatcher] = useInputReducer()
@@ -60,22 +60,23 @@ export default function({onCancelHandler} : {onCancelHandler: () => void}) {
                         title: title.value,
                         geo: geo.position.toReversed().join(" "),
                         description: description.value,
-                        reviews_list: [
-                            {
-                                user_id: userData.user_id,
-                                review_id: await Client.reviews.getNewId(),
-                                place_id: placeId,
-                                description: description.value,
-                                photos: files,
-                                grade: grade,
-                                user_photo: "",
-                                user_name: userData.name,
-                                created_at: formatDate(Date.now())
-                            }
-                        ],
+                        reviews_list: [],
                         category: storeFilters.category,
                         filters_list: storeFilters.filters,
                     });
+                    currentReviews.set([
+                        {
+                            user_id: userData.user_id,
+                            review_id: await Client.reviews.getNewId(),
+                            place_id: placeId,
+                            description: description.value,
+                            photos: files,
+                            grade: grade,
+                            user_photo: "",
+                            user_name: userData.name,
+                            created_at: formatDate(Date.now())
+                        }
+                    ])
                 } else {
                     toast.add("Место не загрузилось! Перезагрузите страницу") 
                 }

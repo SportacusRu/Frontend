@@ -10,7 +10,8 @@ type CurrentPlace = {
 
 type CurrentReviews = {
     value: Reviews[] | undefined
-    loading: boolean
+    loading: boolean,
+    set: (reviews: Reviews[]) => void
 }
 
 type CurrentPlaceContext = {
@@ -49,7 +50,8 @@ export default function CurrentPlaceProvider(
         }, 
         currentReviews: {
             value: reviews,
-            loading: isLoading
+            loading: isLoading,
+            set: (reviews: Reviews[]) => setReviews(reviews)
         }
     }
     return (

@@ -49,7 +49,7 @@ export default function({onCancelHandler} : {onCancelHandler: () => void}) {
                 storeFilters.category, storeFilters.filters
             )
             setLoading(false)
-            if (placeId > -1) {
+            if (!Number.isFinite(placeId)) {
                 toast.add("Место не загрузилось! Перезагрузите страницу")
             } else {
                 if (userData) 

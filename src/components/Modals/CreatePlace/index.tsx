@@ -51,6 +51,10 @@ export default function({onCancelHandler} : {onCancelHandler: () => void}) {
             if (!Number.isFinite(placeId)) {
                 toast.add("Место не загрузилось! Проверьте корректность данных")
             } else {
+                Client.reviews.add(
+                    placeId, description.value, files, grade
+                )
+                .catch(() => toast.add("Место не загрузилось! Перезагрузите страницу"))
                 if (userData) {
                     currentPlace.set({
                         place_id: placeId,
@@ -77,9 +81,6 @@ export default function({onCancelHandler} : {onCancelHandler: () => void}) {
                         }
                     ])
                     onCancelHandler()
-                    await Client.reviews.add(
-                        placeId, description.value, files, grade
-                    )
                 } else {
                     toast.add("Место не загрузилось! Перезагрузите страницу") 
                 }

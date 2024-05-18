@@ -48,11 +48,11 @@ export default function({onCancelHandler} : {onCancelHandler: () => void}) {
                 title.value, geo.position.toReversed().join(" "), description.value,
                 storeFilters.category, storeFilters.filters
             )
-            setLoading(false)
             if (!Number.isFinite(placeId)) {
-                toast.add("Место не загрузилось! Перезагрузите страницу")
+                toast.add("Место не загрузилось! Проверьте корректность данных")
             } else {
-                if (userData) 
+                if (userData) {
+                    onCancelHandler()
                     currentPlace.set({
                         place_id: placeId,
                         user_id: userData.user_id,
@@ -76,9 +76,11 @@ export default function({onCancelHandler} : {onCancelHandler: () => void}) {
                         category: storeFilters.category,
                         filters_list: storeFilters.filters,
                     });
-                    onCancelHandler()
+                } else {
+                    toast.add("Место не загрузилось! Перезагрузите страницу") 
+                }
             }
-
+            setLoading(false)
             const reviewRes = await Client.reviews.add(
                 placeId, description.value, files, grade
             )

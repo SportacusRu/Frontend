@@ -52,7 +52,6 @@ export default function({onCancelHandler} : {onCancelHandler: () => void}) {
                 toast.add("Место не загрузилось! Проверьте корректность данных")
             } else {
                 if (userData) {
-                    onCancelHandler()
                     currentPlace.set({
                         place_id: placeId,
                         user_id: userData.user_id,
@@ -77,17 +76,18 @@ export default function({onCancelHandler} : {onCancelHandler: () => void}) {
                             created_at: formatDate(Date.now())
                         }
                     ])
+                    onCancelHandler()
+                    await Client.reviews.add(
+                        placeId, description.value, files, grade
+                    )
                 } else {
                     toast.add("Место не загрузилось! Перезагрузите страницу") 
                 }
             }
-            setLoading(false)
-            const reviewRes = await Client.reviews.add(
-                placeId, description.value, files, grade
-            )
         } else {
             toast.add("Проверьте, что все данные введены верно и прикреплено хоть одно изображение!")
         }
+        setLoading(false)
     }
     return (
         <ModalWrapper onCancelHandler={onCancelHandler} isTransition={true}>

@@ -41,6 +41,13 @@ class ReviewsRouter extends baseRouter {
         })
     }
 
+    async getNewId() : Promise<number> {
+        const response: AxiosResponse<number> = await this.__client.get(
+            this.__BASE_URL + "/getNewId"
+        )
+        return response.data
+    }
+
     async remove(review_id: number) : Promise<ErrorType> {
         return await this.post("remove", {
             review_id: review_id

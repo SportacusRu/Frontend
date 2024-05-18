@@ -20,12 +20,15 @@ import { useToastQueue } from "@/shared/ToastQueueProvider";
 import ImagesList from "@/components/ImagesList";
 import { useCurrentPlace } from "@/shared/CurrentPlaceProvider";
 import Loader from "@/components/Loader";
+import useUserData from "@/hooks/useUserData";
+import formatDate from "@/extensions/formatData";
 
 
 export default function({onCancelHandler} : {onCancelHandler: () => void}) {
     const [title, titleDispatcher] = useInputReducer()
     const toast = useToastQueue()
     const {currentPlace} = useCurrentPlace()
+    const {userData} = useUserData()
     const geo = useUserPosition()
     const [description, descriptionDispatcher] = useInputReducer()
     const [grade, setGrade] = useState(3);
@@ -45,16 +48,40 @@ export default function({onCancelHandler} : {onCancelHandler: () => void}) {
                 title.value, geo.position.toReversed().join(" "), description.value,
                 storeFilters.category, storeFilters.filters
             )
+            setLoading(false)
+            if (placeId > -1) {
+                toast.add("Место не загрузилось! Перезагрузите страницу")
+            } else {
+                if (userData) 
+                    currentPlace.set({
+                        place_id: placeId,
+                        user_id: userData.user_id,
+                        rating: grade,
+                        title: title.value,
+                        geo: geo.position.toReversed().join(" "),
+                        description: description.value,
+                        reviews_list: [
+                            {
+                                user_id: userData.user_id,
+                                review_id: await Client.reviews.getNewId(),
+                                place_id: placeId,
+                                description: description.value,
+                                photos: files,
+                                grade: grade,
+                                user_photo: "",
+                                user_name: userData.name,
+                                created_at: formatDate(Date.now())
+                            }
+                        ],
+                        category: storeFilters.category,
+                        filters_list: storeFilters.filters,
+                    });
+                    onCancelHandler()
+            }
+
             const reviewRes = await Client.reviews.add(
                 placeId, description.value, files, grade
             )
-            setLoading(false)
-            if (placeId > -1 && reviewRes.error) {
-                toast.add("Что-то пошло не так! Перезагрузите страницу")
-            } else {
-                onCancelHandler()
-                currentPlace.set(await Client.places.getById(placeId));
-            }
         } else {
             toast.add("Проверьте, что все данные введены верно и прикреплено хоть одно изображение!")
         }

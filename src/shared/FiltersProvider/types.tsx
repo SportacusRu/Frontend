@@ -6,7 +6,7 @@ export type FiltersState = {
 }
 
 export type FiltersStateActions = {
-    type: "ADD_FILTER" | "REMOVE_FILTER" | "SET_CATEGORY",
+    type: "ADD_FILTER" | "REMOVE_FILTER" | "SET_CATEGORY" | "RESET",
     payload: string
 }
 

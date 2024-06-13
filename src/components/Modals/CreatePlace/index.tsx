@@ -24,7 +24,9 @@ import useUserData from "@/hooks/useUserData";
 import formatDate from "@/extensions/formatData";
 
 
-export default function({onCancelHandler} : {onCancelHandler: () => void}) {
+export default function({onCancelHandler} : {
+    onCancelHandler: () => void
+}) {
     const [title, titleDispatcher] = useInputReducer()
     const toast = useToastQueue()
     const {currentPlace, currentReviews} = useCurrentPlace()
@@ -51,11 +53,10 @@ export default function({onCancelHandler} : {onCancelHandler: () => void}) {
             if (!Number.isFinite(placeId)) {
                 toast.add("Место не загрузилось! Проверьте корректность данных")
             } else {
-                Client.reviews.add(
+                let res = await Client.reviews.add(
                     placeId, description.value, files, grade
-                )
-                .catch(() => toast.add("Место не загрузилось! Перезагрузите страницу"))
-                if (userData) {
+                );
+                if (!res.error && userData) {
                     currentPlace.set({
                         place_id: placeId,
                         user_id: userData.user_id,
@@ -80,9 +81,10 @@ export default function({onCancelHandler} : {onCancelHandler: () => void}) {
                             created_at: formatDate(Date.now())
                         }
                     ])
+                    dispatchFilters({"type": "RESET", payload: ""});
                     onCancelHandler()
                 } else {
-                    toast.add("Место не загрузилось! Перезагрузите страницу") 
+                    toast.add("Место не загрузилось! Перезагрузите страницу");
                 }
             }
         } else {

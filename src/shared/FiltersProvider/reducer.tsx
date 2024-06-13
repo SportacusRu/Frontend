@@ -14,6 +14,11 @@ export default function filtersReducer(
                 category: state.category,
                 filters: state.filters.filter(item => item != action.payload),
             }
+        case "RESET":
+            return {
+                category: "",
+                filters: []
+            }
         case "SET_CATEGORY":
             return {
                 filters: state.filters,

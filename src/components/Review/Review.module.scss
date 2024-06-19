@@ -44,7 +44,7 @@
         color: var(--color-grey-light);
         width: 100%;
         height: 100%;
-        word-break: break-all;
+        word-break: break-word;
         display: -webkit-box;
         -webkit-line-clamp: 3; // количество строк
         -webkit-box-orient: vertical;

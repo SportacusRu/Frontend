@@ -15,6 +15,7 @@ import { NAVBAR_PAGES } from "@/config/config";
 import { useCurrentPlace } from "@/shared/CurrentPlaceProvider";
 import Loader from "../Loader";
 import { Client } from "@/client";
+import { useFilters } from "@/shared/FiltersProvider";
 
 
 export default function(props : ViewProps) {
@@ -24,10 +25,12 @@ export default function(props : ViewProps) {
     const authorized = Client.authorized
     const { currentPlace, currentReviews } = useCurrentPlace();
     const [modalCreate, setModalCreate] = useState<boolean>(false);
+    const [storeFilters, dispatchFilters] = useFilters();
 
     const handleModalCreate = (modalView: boolean) => {
         setModalCreate(modalView);
         if (modalView) {
+            dispatchFilters({type: "RESET", payload: ""});
             setScreen(PAGES.Map);
         }
     }

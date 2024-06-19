@@ -56,8 +56,6 @@ input[type=file] {
 }
 
 .imageUploader {
-  position: relative;
-  overflow: hidden;
 
   display: flex;
   justify-content: center;
@@ -79,6 +77,9 @@ input[type=file] {
   &Wrapper {
     width: 82px;
     height: 82px;
+
+    position: relative;
+    overflow: hidden;
   }
   &:hover {
     background: var(--color-body-light);

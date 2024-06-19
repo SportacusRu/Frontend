@@ -15,7 +15,6 @@ export default function({onUpload}: ImageUploaderProps) {
         {
             setLoading(true)
             var minimizedImage = await minimization(e.target.files[0], {
-                quality: 0.5,
                 type: "image/png"
             })
             if (minimizedImage) 

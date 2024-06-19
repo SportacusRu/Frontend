@@ -25,10 +25,10 @@ export default function({onUpload}: ImageUploaderProps) {
     }
     return (
         <div className="imageUploaderWrapper">
-            <Loader loading={loading} />
             <input type="file" accept="image/png, image/jpeg" id={inputId} onChange={uploadHandler} />
             <label htmlFor={inputId} className="imageUploader">
                 <div>
+                    <Loader loading={loading} />
                     <Icon type={Icons.add} color={Colors.greyLight}/>
                 </div>
             </label>

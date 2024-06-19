@@ -17,6 +17,7 @@ import Icon from "@/components/Icon";
 import { Client } from "@/client";
 import Image from "next/image";
 import useScreen, { PAGES } from "@/hooks/useScreen";
+import { PLACES_FILTERS } from "@/config/config";
 
 
 export default function FiltersModal() {
@@ -80,6 +81,7 @@ export default function FiltersModal() {
                     <div className={s.filtersContent}>
                             {allFilters.map((filter, i) => <Filter 
                             type={filter} onClick={toggleFilters} key={i}
+                            active={store.filters.includes(PLACES_FILTERS[filter-14])}
                         />)}
                     </div>
                 </Scrollbar>

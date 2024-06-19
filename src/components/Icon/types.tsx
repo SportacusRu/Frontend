@@ -37,7 +37,8 @@ export enum Icons {
     tennis,
     triathlon,
     twister,
-    verticalBars
+    verticalBars,
+    other
 }
 
 export const allFilters = [
@@ -63,7 +64,8 @@ export const allFilters = [
     Icons.tennis,
     Icons.triathlon,
     Icons.twister,
-    Icons.verticalBars
+    Icons.verticalBars,
+    Icons.other
 ] as const;
 
 

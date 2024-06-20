@@ -37,7 +37,7 @@ export default function() {
             />
             <div className={s.authenticationContent}>
                 <h1>
-                    Зарегеструйтесь
+                    Зарегистрируйтесь
                     <br />или войдите 
                     <br />в Sportacus 
                 </h1>

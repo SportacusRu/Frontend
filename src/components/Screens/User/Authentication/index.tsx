@@ -36,11 +36,11 @@ export default function() {
                 className={s.authenticationImage}
             />
             <div className={s.authenticationContent}>
-                <h1>
+                <h2>
                     Зарегистрируйтесь
                     <br />или войдите 
                     <br />в Sportacus 
-                </h1>
+                </h2>
                 <div className={s.authenticationButtons}>
                     <Button 
                         type={ButtonType.MainColor}
